@@ -8,17 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		00E2D52D2B86E73A00BE9ABF /* FurnitureAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2D52C2B86E73A00BE9ABF /* FurnitureAppApp.swift */; };
-		00E2D52F2B86E73A00BE9ABF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2D52E2B86E73A00BE9ABF /* ContentView.swift */; };
+		00E2D52F2B86E73A00BE9ABF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2D52E2B86E73A00BE9ABF /* WelcomeView.swift */; };
 		00E2D5312B86E73B00BE9ABF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5302B86E73B00BE9ABF /* Assets.xcassets */; };
 		00E2D5342B86E73B00BE9ABF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5332B86E73B00BE9ABF /* Preview Assets.xcassets */; };
+		00E2D53B2B86E8D700BE9ABF /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D53A2B86E8D700BE9ABF /* Splash.storyboard */; };
+		00E2D5492B86F6FF00BE9ABF /* Gelasio-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5412B86F6FE00BE9ABF /* Gelasio-Regular.ttf */; };
+		00E2D54B2B86F6FF00BE9ABF /* Gelasio-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5432B86F6FE00BE9ABF /* Gelasio-SemiBold.ttf */; };
+		00E2D54C2B86F6FF00BE9ABF /* Gelasio-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5442B86F6FE00BE9ABF /* Gelasio-Bold.ttf */; };
+		00E2D54D2B86F6FF00BE9ABF /* Gelasio-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5452B86F6FE00BE9ABF /* Gelasio-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00E2D5292B86E73A00BE9ABF /* FurnitureApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FurnitureApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E2D52C2B86E73A00BE9ABF /* FurnitureAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureAppApp.swift; sourceTree = "<group>"; };
-		00E2D52E2B86E73A00BE9ABF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		00E2D52E2B86E73A00BE9ABF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		00E2D5302B86E73B00BE9ABF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00E2D5332B86E73B00BE9ABF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		00E2D53A2B86E8D700BE9ABF /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		00E2D5412B86F6FE00BE9ABF /* Gelasio-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gelasio-Regular.ttf"; sourceTree = "<group>"; };
+		00E2D5432B86F6FE00BE9ABF /* Gelasio-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gelasio-SemiBold.ttf"; sourceTree = "<group>"; };
+		00E2D5442B86F6FE00BE9ABF /* Gelasio-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gelasio-Bold.ttf"; sourceTree = "<group>"; };
+		00E2D5452B86F6FE00BE9ABF /* Gelasio-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gelasio-Medium.ttf"; sourceTree = "<group>"; };
+		00E2D54F2B86F7AF00BE9ABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +62,13 @@
 		00E2D52B2B86E73A00BE9ABF /* FurnitureApp */ = {
 			isa = PBXGroup;
 			children = (
+				00E2D54F2B86F7AF00BE9ABF /* Info.plist */,
+				00E2D53C2B86EA3E00BE9ABF /* Authentication */,
 				00E2D52C2B86E73A00BE9ABF /* FurnitureAppApp.swift */,
-				00E2D52E2B86E73A00BE9ABF /* ContentView.swift */,
 				00E2D5302B86E73B00BE9ABF /* Assets.xcassets */,
 				00E2D5322B86E73B00BE9ABF /* Preview Content */,
+				00E2D53A2B86E8D700BE9ABF /* Splash.storyboard */,
+				00E2D53E2B86F6E300BE9ABF /* Fonts */,
 			);
 			path = FurnitureApp;
 			sourceTree = "<group>";
@@ -65,6 +79,33 @@
 				00E2D5332B86E73B00BE9ABF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		00E2D53C2B86EA3E00BE9ABF /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				00E2D53D2B86EA5000BE9ABF /* WelcomeScreen */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		00E2D53D2B86EA5000BE9ABF /* WelcomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				00E2D52E2B86E73A00BE9ABF /* WelcomeView.swift */,
+			);
+			path = WelcomeScreen;
+			sourceTree = "<group>";
+		};
+		00E2D53E2B86F6E300BE9ABF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				00E2D5442B86F6FE00BE9ABF /* Gelasio-Bold.ttf */,
+				00E2D5452B86F6FE00BE9ABF /* Gelasio-Medium.ttf */,
+				00E2D5412B86F6FE00BE9ABF /* Gelasio-Regular.ttf */,
+				00E2D5432B86F6FE00BE9ABF /* Gelasio-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,8 +166,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00E2D54B2B86F6FF00BE9ABF /* Gelasio-SemiBold.ttf in Resources */,
+				00E2D5492B86F6FF00BE9ABF /* Gelasio-Regular.ttf in Resources */,
+				00E2D54D2B86F6FF00BE9ABF /* Gelasio-Medium.ttf in Resources */,
 				00E2D5342B86E73B00BE9ABF /* Preview Assets.xcassets in Resources */,
+				00E2D54C2B86F6FF00BE9ABF /* Gelasio-Bold.ttf in Resources */,
 				00E2D5312B86E73B00BE9ABF /* Assets.xcassets in Resources */,
+				00E2D53B2B86E8D700BE9ABF /* Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E2D52F2B86E73A00BE9ABF /* ContentView.swift in Sources */,
+				00E2D52F2B86E73A00BE9ABF /* WelcomeView.swift in Sources */,
 				00E2D52D2B86E73A00BE9ABF /* FurnitureAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,11 +320,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FurnitureApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FurnitureApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -286,9 +335,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.moataz.FurnitureApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,11 +355,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FurnitureApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FurnitureApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -314,9 +370,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.moataz.FurnitureApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
