@@ -1,20 +1,21 @@
 //
-//  Test.swift
+//  SignUpView.swift
 //  FurnitureApp
 //
-//  Created by Moataz Mohamed on 25/02/2024.
+//  Created by Moataz Mohamed on 27/02/2024.
 //
 
 import SwiftUI
 
-struct LogInView: View {
+struct SignUpView: View {
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
     @State private var isKeyboardPresented = false
-    @State private var email = ""
-    @State private var password = ""
     @State private var showingView = false
-    
+    @State private var name:String=""
+    @State private var email:String=""
+    @State private var passWord:String=""
+    @State private var confirmPassWord:String=""
     var body: some View {
         ScrollView(showsIndicators:false){
             VStack{
@@ -31,34 +32,28 @@ struct LogInView: View {
                             .frame(width: screenWidth*0.3,height: 2)
                             .foregroundStyle(Color(hex: 0x909090))
                     }.padding(.vertical)
-                    
-                    Text("Hello !")
-                        .font(.custom("Gelasio-Regular", size: 30))
-                        .foregroundStyle(.subMain)
-                    Text("WELCOME BACK")
+                    Text("WELCOME")
                         .font(.custom("Gelasio-Bold", size: 26))
                         .foregroundStyle(.main)
                 }
                 .frame(maxWidth: .infinity)
                 
-                
                 Spacer()
-                
                 if showingView{
                     HStack{
                         Rectangle()
                             .foregroundStyle(.white)
                             .shadow(color:Color(hex: 0x8A959E).opacity(0.5),radius: 7)
                             .overlay(alignment:.topLeading) {
-                                InnerLogInView(width: screenWidth, height: screenHeight , email: $email,passWord: $password)
+                                InnerSignUpView(width: screenWidth, height: screenHeight, name: $name, email: $email, passWord: $passWord, confirmPassWord: $confirmPassWord)
                             }
-                            .frame(width:screenWidth*0.95,height:screenHeight*0.58)
+                            .frame(width:screenWidth*0.95,height:520)
                         Spacer()
                     }.transition(.move(edge: .trailing))
                 }
                 Spacer()
             }
-            .frame(minHeight:screenHeight - 100)
+            .frame(minHeight: screenHeight - 100)
             .onAppear{
                 NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { _ in
                     isKeyboardPresented = true
@@ -83,24 +78,34 @@ struct LogInView: View {
 }
 
 #Preview {
-    LogInView()
+    SignUpView()
 }
 
 
-struct InnerLogInView : View{
+struct InnerSignUpView : View {
     let width : Double
     let height:Double
+    @Binding var name:String
     @Binding var email:String
     @Binding var passWord:String
-    
-    var body:some View{
+    @Binding var confirmPassWord:String
+    var body: some View {
         VStack{
             VStack(spacing:width*0.045){
+                VStack(alignment:.leading){
+                    Text("Name")
+                        .font(.system(size: 14))
+                        .foregroundStyle(Color(hex: 0x909090))
+                    TextField("", text: $email)
+                    Rectangle()
+                        .frame(maxWidth:.infinity)
+                        .frame(height: 2)
+                        .foregroundStyle(Color(hex: 0xE0E0E0))
+                }.padding(.bottom)
                 VStack(alignment:.leading){
                     Text("Email")
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
-                        .padding(.top,20)
                     TextField("", text: $email)
                     Rectangle()
                         .frame(maxWidth:.infinity)
@@ -116,39 +121,43 @@ struct InnerLogInView : View{
                         .frame(maxWidth:.infinity)
                         .frame(height: 2)
                         .foregroundStyle(Color(hex: 0xE0E0E0))
+                }.padding(.bottom)
+                VStack(alignment:.leading){
+                    Text("Confirm Password")
+                        .font(.system(size: 14))
+                        .foregroundStyle(Color(hex: 0x909090))
+                    TextField("", text: $email)
+                    Rectangle()
+                        .frame(maxWidth:.infinity)
+                        .frame(height: 2)
+                        .foregroundStyle(Color(hex: 0xE0E0E0))
                 }
             }.padding([.leading,.top])
-            VStack(spacing:width*0.037){
-                Spacer()
-                Button{}label: {
-                    Text("Forgot Password")
-                        .font(.system(size: 18,weight: .semibold))
-                        .foregroundStyle(Color(hex: 0x303030))
-                }.padding( .bottom)
-                Spacer()
+            
+            Spacer()
+            VStack(spacing:30){
                 Button{}label: {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: 290,height: 50)
                         .foregroundStyle(.main)
                         .shadow(radius: 10)
                         .overlay{
-                            Text("Log In")
+                            Text("SIGN UP")
                                 .font(.system(size: 18,weight: .semibold))
                                 .foregroundStyle(.white)
                         }
                 }
-                
-                NavigationLink(destination: SignUpView()) {
-                    Text("Sign Up")
-                        .font(.system(size: 18,weight: .semibold))
-                        .foregroundStyle(Color(hex: 0x303030))
-                    
+                HStack(spacing:3){
+                    Text("Already Have Account?")
+                        .foregroundStyle(.subTitle)
+                    NavigationLink(destination: LogInView()) {
+                        Text("SIGN IN")
+                            .foregroundStyle(Color(hex: 0x303030))
+                    }
                 }
-                Spacer()
-                Spacer()
             }
+            Spacer()
             
         }
-        .frame(width:width*0.95,height:height*0.58)
     }
 }

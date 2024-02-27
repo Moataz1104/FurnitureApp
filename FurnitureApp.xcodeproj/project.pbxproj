@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		006670B92B8DBA21009E78BE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006670B82B8DBA21009E78BE /* SignUpView.swift */; };
 		00E2D52D2B86E73A00BE9ABF /* FurnitureAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2D52C2B86E73A00BE9ABF /* FurnitureAppApp.swift */; };
 		00E2D52F2B86E73A00BE9ABF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2D52E2B86E73A00BE9ABF /* WelcomeView.swift */; };
 		00E2D5312B86E73B00BE9ABF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5302B86E73B00BE9ABF /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		006670B82B8DBA21009E78BE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		00E2D5292B86E73A00BE9ABF /* FurnitureApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FurnitureApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E2D52C2B86E73A00BE9ABF /* FurnitureAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureAppApp.swift; sourceTree = "<group>"; };
 		00E2D52E2B86E73A00BE9ABF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		006670B72B8DBA02009E78BE /* SignUpScreen */ = {
+			isa = PBXGroup;
+			children = (
+				006670B82B8DBA21009E78BE /* SignUpView.swift */,
+			);
+			path = SignUpScreen;
+			sourceTree = "<group>";
+		};
 		00E2D5202B86E73A00BE9ABF = {
 			isa = PBXGroup;
 			children = (
@@ -89,8 +99,9 @@
 		00E2D53C2B86EA3E00BE9ABF /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				00E2D5502B882B3300BE9ABF /* LogInScreen */,
 				00E2D53D2B86EA5000BE9ABF /* WelcomeScreen */,
+				00E2D5502B882B3300BE9ABF /* LogInScreen */,
+				006670B72B8DBA02009E78BE /* SignUpScreen */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -206,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E2D52F2B86E73A00BE9ABF /* WelcomeView.swift in Sources */,
+				006670B92B8DBA21009E78BE /* SignUpView.swift in Sources */,
 				00E2D5572B8AC50800BE9ABF /* LogInView.swift in Sources */,
 				00E2D52D2B86E73A00BE9ABF /* FurnitureAppApp.swift in Sources */,
 				00E2D5552B883B7800BE9ABF /* Color+extension.swift in Sources */,
