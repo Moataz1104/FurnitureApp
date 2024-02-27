@@ -16,6 +16,8 @@
 		00E2D54B2B86F6FF00BE9ABF /* Gelasio-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5432B86F6FE00BE9ABF /* Gelasio-SemiBold.ttf */; };
 		00E2D54C2B86F6FF00BE9ABF /* Gelasio-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5442B86F6FE00BE9ABF /* Gelasio-Bold.ttf */; };
 		00E2D54D2B86F6FF00BE9ABF /* Gelasio-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00E2D5452B86F6FE00BE9ABF /* Gelasio-Medium.ttf */; };
+		00E2D5552B883B7800BE9ABF /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2D5542B883B7800BE9ABF /* Color+extension.swift */; };
+		00E2D5572B8AC50800BE9ABF /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E2D5562B8AC50800BE9ABF /* LogInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		00E2D5442B86F6FE00BE9ABF /* Gelasio-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gelasio-Bold.ttf"; sourceTree = "<group>"; };
 		00E2D5452B86F6FE00BE9ABF /* Gelasio-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gelasio-Medium.ttf"; sourceTree = "<group>"; };
 		00E2D54F2B86F7AF00BE9ABF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		00E2D5542B883B7800BE9ABF /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
+		00E2D5562B8AC50800BE9ABF /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		00E2D52B2B86E73A00BE9ABF /* FurnitureApp */ = {
 			isa = PBXGroup;
 			children = (
+				00E2D5532B883B5C00BE9ABF /* Extensions */,
 				00E2D54F2B86F7AF00BE9ABF /* Info.plist */,
 				00E2D53C2B86EA3E00BE9ABF /* Authentication */,
 				00E2D52C2B86E73A00BE9ABF /* FurnitureAppApp.swift */,
@@ -84,6 +89,7 @@
 		00E2D53C2B86EA3E00BE9ABF /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				00E2D5502B882B3300BE9ABF /* LogInScreen */,
 				00E2D53D2B86EA5000BE9ABF /* WelcomeScreen */,
 			);
 			path = Authentication;
@@ -106,6 +112,22 @@
 				00E2D5432B86F6FE00BE9ABF /* Gelasio-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		00E2D5502B882B3300BE9ABF /* LogInScreen */ = {
+			isa = PBXGroup;
+			children = (
+				00E2D5562B8AC50800BE9ABF /* LogInView.swift */,
+			);
+			path = LogInScreen;
+			sourceTree = "<group>";
+		};
+		00E2D5532B883B5C00BE9ABF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				00E2D5542B883B7800BE9ABF /* Color+extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,7 +206,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E2D52F2B86E73A00BE9ABF /* WelcomeView.swift in Sources */,
+				00E2D5572B8AC50800BE9ABF /* LogInView.swift in Sources */,
 				00E2D52D2B86E73A00BE9ABF /* FurnitureAppApp.swift in Sources */,
+				00E2D5552B883B7800BE9ABF /* Color+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +351,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -362,7 +386,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
