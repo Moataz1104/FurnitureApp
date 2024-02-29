@@ -31,7 +31,7 @@ struct SignUpView: View {
                         Rectangle()
                             .frame(width: screenWidth*0.3,height: 2)
                             .foregroundStyle(Color(hex: 0x909090))
-                    }.padding(.vertical)
+                    }
                     Text("WELCOME")
                         .font(.custom("Gelasio-Bold", size: 26))
                         .foregroundStyle(.main)
@@ -54,6 +54,9 @@ struct SignUpView: View {
                 Spacer()
             }
             .frame(minHeight: screenHeight - 100)
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
             .onAppear{
                 NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { _ in
                     isKeyboardPresented = true
@@ -83,12 +86,29 @@ struct SignUpView: View {
 
 
 struct InnerSignUpView : View {
+    enum Field: Hashable {
+        case password
+    }
+
     let width : Double
     let height:Double
     @Binding var name:String
     @Binding var email:String
     @Binding var passWord:String
     @Binding var confirmPassWord:String
+    @State private var isSecure = true
+    @FocusState private var focusedField: Field?
+
+    @State private var isNameValid = true
+    @State private var isEmailValid = true
+    @State private var isPasswordValid = true
+    @State private var isConfirmPWValid = true
+    
+    @State private var showValNameAlert = false
+    @State private var showValEmailAlert = false
+    @State private var showValPwAlert = false
+
+
     var body: some View {
         VStack{
             VStack(spacing:width*0.045){
@@ -96,41 +116,103 @@ struct InnerSignUpView : View {
                     Text("Name")
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
-                    TextField("", text: $email)
+                    TextField("", text: $name){isEditing in
+                        if !isEditing{
+                            isNameValid = !name.isEmpty
+                        }
+                    }
                     Rectangle()
                         .frame(maxWidth:.infinity)
                         .frame(height: 2)
-                        .foregroundStyle(Color(hex: 0xE0E0E0))
+                        .foregroundStyle(isNameValid ? Color(hex: 0xE0E0E0) : .red)
                 }.padding(.bottom)
                 VStack(alignment:.leading){
                     Text("Email")
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
-                    TextField("", text: $email)
+                    TextField("", text: $email){ isEditing in
+                        if !isEditing{
+                            if !isEmailValid{
+                                showValEmailAlert = true
+                            }
+                        }
+                    }.onChange(of: email, { _, newValue in
+                        isEmailValid = Validation.isValidEmail(newValue)
+
+                    })
                     Rectangle()
                         .frame(maxWidth:.infinity)
                         .frame(height: 2)
-                        .foregroundStyle(Color(hex: 0xE0E0E0))
+                        .foregroundStyle(isEmailValid ? Color(hex: 0xE0E0E0) : .red)
                 }.padding(.bottom)
                 VStack(alignment:.leading){
                     Text("Password")
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
-                    TextField("", text: $passWord)
+                    HStack{
+                        Group{
+                            if isSecure{
+                                SecureField("", text: $passWord)
+                                    .focused($focusedField,equals: .password)
+                                
+                            }else{
+                                TextField("", text: $passWord)
+                                    .focused($focusedField,equals: .password)
+                                
+                            }
+                        }.onChange(of: passWord, { _, newValue in
+                            isPasswordValid = Validation.isPasswordValid(newValue)
+                        })
+                        .onChange(of: focusedField, { _, newValue in
+                            if focusedField == nil {
+                                if isPasswordValid == false {
+                                    showValPwAlert = true
+                                }
+                            }
+                        })
+
+                        Image(systemName: isSecure ? "eye.slash" : "eye")
+                            .tint(.gray)
+                            .padding(.trailing , 5)
+                            .onTapGesture {
+                                self.isSecure.toggle()
+                            }
+                    }
                     Rectangle()
                         .frame(maxWidth:.infinity)
                         .frame(height: 2)
-                        .foregroundStyle(Color(hex: 0xE0E0E0))
+                        .foregroundStyle(isPasswordValid ? Color(hex: 0xE0E0E0) : .red)
                 }.padding(.bottom)
                 VStack(alignment:.leading){
                     Text("Confirm Password")
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
-                    TextField("", text: $email)
+                    HStack{
+                        Group{
+                            if isSecure{
+                                SecureField("", text: $confirmPassWord)
+                            }else{
+                                TextField("", text: $confirmPassWord)
+                            }
+                        }.onChange(of:confirmPassWord){_ , newValue in
+                            if newValue != passWord {
+                                isConfirmPWValid = false
+                            }else{
+                                isConfirmPWValid = true
+
+                            }
+                        }
+                        Image(systemName: isSecure ? "eye.slash" : "eye")
+                            .tint(.gray)
+                            .padding(.trailing , 5)
+                            .onTapGesture {
+                                self.isSecure.toggle()
+                            }
+                    }
                     Rectangle()
                         .frame(maxWidth:.infinity)
                         .frame(height: 2)
-                        .foregroundStyle(Color(hex: 0xE0E0E0))
+                        .foregroundStyle(isConfirmPWValid ? Color(hex: 0xE0E0E0) : .red)
                 }
             }.padding([.leading,.top])
             

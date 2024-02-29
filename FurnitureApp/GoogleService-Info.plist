@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBD5CczedTVCQim9sjnZi2S6gHsDBCQXJg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>147015480792</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.moataz.FurnitureApp</string>
+	<key>PROJECT_ID</key>
+	<string>furnitureapp-ea648</string>
+	<key>STORAGE_BUCKET</key>
+	<string>furnitureapp-ea648.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:147015480792:ios:8b5aa0911d7291a0a2eead</string>
+</dict>
+</plist>

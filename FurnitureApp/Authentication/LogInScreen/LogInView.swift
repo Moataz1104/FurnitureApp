@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import Combine
 struct LogInView: View {
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
@@ -59,6 +59,9 @@ struct LogInView: View {
                 Spacer()
             }
             .frame(minHeight:screenHeight - 100)
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
             .onAppear{
                 NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { _ in
                     isKeyboardPresented = true
@@ -88,11 +91,21 @@ struct LogInView: View {
 
 
 struct InnerLogInView : View{
+    enum Field: Hashable {
+        case password
+    }
     let width : Double
     let height:Double
+    
     @Binding var email:String
     @Binding var passWord:String
-    
+    @State private var isSecure = true
+    @State private var isEmailValid = true
+    @State private var isPasswordValid = true
+    @State private var showValEmailAlert = false
+    @State private var showValPwAlert = false
+    @FocusState private var focusedField: Field?
+
     var body:some View{
         VStack{
             VStack(spacing:width*0.045){
@@ -101,21 +114,64 @@ struct InnerLogInView : View{
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
                         .padding(.top,20)
-                    TextField("", text: $email)
+                    TextField("", text: $email) { isEditing in
+                        if !isEditing{
+                            if !isEmailValid{
+                                showValEmailAlert = true
+                            }
+                        }
+                    }.onChange(of: email, { _, newValue in
+                        isEmailValid = Validation.isValidEmail(newValue)
+
+                    })
+                    .textContentType(.emailAddress)
+                    .alert("Invalid Email", isPresented: $showValEmailAlert){}
+                    
                     Rectangle()
                         .frame(maxWidth:.infinity)
                         .frame(height: 2)
-                        .foregroundStyle(Color(hex: 0xE0E0E0))
+                        .foregroundStyle(isEmailValid ? Color(hex: 0xE0E0E0) : .red)
                 }.padding(.bottom)
+                
                 VStack(alignment:.leading){
                     Text("Password")
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
-                    TextField("", text: $passWord)
+                    HStack{
+                        Group{
+                            if isSecure{
+                                SecureField("", text: $passWord)
+                                    .focused($focusedField,equals: .password)
+
+                            }else{
+                                TextField("", text: $passWord)
+                                    .focused($focusedField,equals: .password)
+                            }
+                        }
+                        .onChange(of: passWord, { _, newValue in
+                            isPasswordValid = Validation.isPasswordValid(newValue)
+                        })
+                        .onChange(of: focusedField, { _, newValue in
+                            if focusedField == nil {
+                                if isPasswordValid == false {
+                                    showValPwAlert = true
+                                }
+                            }
+                        })
+                        .alert("Invalid Password", isPresented: $showValPwAlert, actions: {}) {
+                            Text("Password must meet the following criteria:\n- At least 8 characters\n- At least 1 uppercase letter\n- At least 1 lowercase letter\n- At least 1 special character")
+                        }
+                        Image(systemName: isSecure ? "eye.slash" : "eye")
+                            .tint(.gray)
+                            .padding(.trailing , 5)
+                            .onTapGesture {
+                                self.isSecure.toggle()
+                            }
+                    }
                     Rectangle()
                         .frame(maxWidth:.infinity)
                         .frame(height: 2)
-                        .foregroundStyle(Color(hex: 0xE0E0E0))
+                        .foregroundStyle(isPasswordValid ? Color(hex: 0xE0E0E0) : .red)
                 }
             }.padding([.leading,.top])
             VStack(spacing:width*0.037){
@@ -136,7 +192,7 @@ struct InnerLogInView : View{
                                 .font(.system(size: 18,weight: .semibold))
                                 .foregroundStyle(.white)
                         }
-                }
+                }.disabled(isEmailValid && isPasswordValid ? false : true)
                 
                 NavigationLink(destination: SignUpView()) {
                     Text("Sign Up")
