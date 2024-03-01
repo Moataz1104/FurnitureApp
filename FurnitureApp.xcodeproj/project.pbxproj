@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		006472532B9086690064C5D9 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006472522B9086690064C5D9 /* AuthViewModel.swift */; };
+		006472562B9086D80064C5D9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006472552B9086D80064C5D9 /* HomeView.swift */; };
 		006670B92B8DBA21009E78BE /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006670B82B8DBA21009E78BE /* SignUpView.swift */; };
 		006670BB2B8DDBA4009E78BE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 006670BA2B8DDBA4009E78BE /* GoogleService-Info.plist */; };
 		006670BE2B8DDBF3009E78BE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 006670BD2B8DDBF3009E78BE /* FirebaseAnalytics */; };
@@ -52,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		006472522B9086690064C5D9 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		006472552B9086D80064C5D9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		006670B82B8DBA21009E78BE /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		006670BA2B8DDBA4009E78BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		006670F42B8EC778009E78BE /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
@@ -109,12 +113,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		006670B72B8DBA02009E78BE /* SignUpScreen */ = {
+		006472542B9086B60064C5D9 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				006670B82B8DBA21009E78BE /* SignUpView.swift */,
+				006472552B9086D80064C5D9 /* HomeView.swift */,
 			);
-			path = SignUpScreen;
+			path = HomeScreen;
 			sourceTree = "<group>";
 		};
 		006670F32B8EC762009E78BE /* Helper */ = {
@@ -148,6 +152,7 @@
 				00E2D5532B883B5C00BE9ABF /* Extensions */,
 				00E2D54F2B86F7AF00BE9ABF /* Info.plist */,
 				00E2D53C2B86EA3E00BE9ABF /* Authentication */,
+				006472542B9086B60064C5D9 /* HomeScreen */,
 				00E2D52C2B86E73A00BE9ABF /* FurnitureAppApp.swift */,
 				00E2D5302B86E73B00BE9ABF /* Assets.xcassets */,
 				006670BA2B8DDBA4009E78BE /* GoogleService-Info.plist */,
@@ -169,19 +174,12 @@
 		00E2D53C2B86EA3E00BE9ABF /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				00E2D53D2B86EA5000BE9ABF /* WelcomeScreen */,
-				00E2D5502B882B3300BE9ABF /* LogInScreen */,
-				006670B72B8DBA02009E78BE /* SignUpScreen */,
+				00E2D52E2B86E73A00BE9ABF /* WelcomeView.swift */,
+				00E2D5562B8AC50800BE9ABF /* LogInView.swift */,
+				006670B82B8DBA21009E78BE /* SignUpView.swift */,
+				006472522B9086690064C5D9 /* AuthViewModel.swift */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		00E2D53D2B86EA5000BE9ABF /* WelcomeScreen */ = {
-			isa = PBXGroup;
-			children = (
-				00E2D52E2B86E73A00BE9ABF /* WelcomeView.swift */,
-			);
-			path = WelcomeScreen;
 			sourceTree = "<group>";
 		};
 		00E2D53E2B86F6E300BE9ABF /* Fonts */ = {
@@ -193,14 +191,6 @@
 				00E2D5432B86F6FE00BE9ABF /* Gelasio-SemiBold.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		00E2D5502B882B3300BE9ABF /* LogInScreen */ = {
-			isa = PBXGroup;
-			children = (
-				00E2D5562B8AC50800BE9ABF /* LogInView.swift */,
-			);
-			path = LogInScreen;
 			sourceTree = "<group>";
 		};
 		00E2D5532B883B5C00BE9ABF /* Extensions */ = {
@@ -320,10 +310,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				006472562B9086D80064C5D9 /* HomeView.swift in Sources */,
 				00E2D52F2B86E73A00BE9ABF /* WelcomeView.swift in Sources */,
 				006670B92B8DBA21009E78BE /* SignUpView.swift in Sources */,
 				00E2D5572B8AC50800BE9ABF /* LogInView.swift in Sources */,
 				00E2D52D2B86E73A00BE9ABF /* FurnitureAppApp.swift in Sources */,
+				006472532B9086690064C5D9 /* AuthViewModel.swift in Sources */,
 				006670F52B8EC778009E78BE /* Validation.swift in Sources */,
 				00E2D5552B883B7800BE9ABF /* Color+extension.swift in Sources */,
 				006670F72B8ED3B7009E78BE /* UIApplication+Extension.swift in Sources */,

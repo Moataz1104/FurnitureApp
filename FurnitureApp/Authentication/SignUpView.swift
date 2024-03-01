@@ -10,6 +10,8 @@ import SwiftUI
 struct SignUpView: View {
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
+    
+    
     @State private var isKeyboardPresented = false
     @State private var showingView = false
     @State private var name:String=""
@@ -92,6 +94,9 @@ struct InnerSignUpView : View {
 
     let width : Double
     let height:Double
+    
+    @StateObject private var viewModel = AuthViewModel()
+    
     @Binding var name:String
     @Binding var email:String
     @Binding var passWord:String
@@ -110,6 +115,12 @@ struct InnerSignUpView : View {
 
 
     var body: some View {
+        if viewModel.isLoading{
+            ProgressView()
+                .position(x:width/2,y:200)
+                
+        }
+
         VStack{
             VStack(spacing:width*0.045){
                 VStack(alignment:.leading){
@@ -218,7 +229,9 @@ struct InnerSignUpView : View {
             
             Spacer()
             VStack(spacing:30){
-                Button{}label: {
+                Button{
+                    viewModel.signUp(emailAddress: email, password: confirmPassWord)
+                }label: {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: 290,height: 50)
                         .foregroundStyle(.main)
@@ -228,7 +241,10 @@ struct InnerSignUpView : View {
                                 .font(.system(size: 18,weight: .semibold))
                                 .foregroundStyle(.white)
                         }
+                }.alert("", isPresented: $viewModel.isError, actions: {}){
+                    Text(viewModel.errorMessage ?? "")
                 }
+
                 HStack(spacing:3){
                     Text("Already Have Account?")
                         .foregroundStyle(.subTitle)

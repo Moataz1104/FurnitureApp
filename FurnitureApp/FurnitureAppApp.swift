@@ -12,7 +12,7 @@ struct FurnitureAppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            HolderView().environmentObject(AuthViewModel())
         }
     }
 }
@@ -25,4 +25,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
     return true
   }
+}
+
+
+struct HolderView: View {
+    @EnvironmentObject private var authModel:AuthViewModel
+    var body: some View {
+        Group{
+            if authModel.user == nil{
+                WelcomeView()
+            }else{
+                HomeView()
+            }
+        }.onAppear{authModel.listenToAuthState()}
+    }
 }

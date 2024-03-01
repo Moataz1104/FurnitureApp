@@ -97,6 +97,8 @@ struct InnerLogInView : View{
     let width : Double
     let height:Double
     
+    @StateObject private var viewModel = AuthViewModel()
+    
     @Binding var email:String
     @Binding var passWord:String
     @State private var isSecure = true
@@ -105,8 +107,14 @@ struct InnerLogInView : View{
     @State private var showValEmailAlert = false
     @State private var showValPwAlert = false
     @FocusState private var focusedField: Field?
-
+    
     var body:some View{
+        if viewModel.isLoading{
+            ProgressView()
+                .position(x:width/2,y:200)
+                
+        }
+        
         VStack{
             VStack(spacing:width*0.045){
                 VStack(alignment:.leading){
@@ -182,7 +190,9 @@ struct InnerLogInView : View{
                         .foregroundStyle(Color(hex: 0x303030))
                 }.padding( .bottom)
                 Spacer()
-                Button{}label: {
+                Button{
+                    viewModel.signIn(emailAddress: email, password: passWord)
+                }label: {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: 290,height: 50)
                         .foregroundStyle(.main)
@@ -192,7 +202,12 @@ struct InnerLogInView : View{
                                 .font(.system(size: 18,weight: .semibold))
                                 .foregroundStyle(.white)
                         }
-                }.disabled(isEmailValid && isPasswordValid ? false : true)
+                }
+                .alert("", isPresented: $viewModel.isError, actions: {}){
+                    Text(viewModel.errorMessage ?? "")
+                }
+                .disabled(isEmailValid && isPasswordValid ? false : true)
+                
                 
                 NavigationLink(destination: SignUpView()) {
                     Text("Sign Up")
