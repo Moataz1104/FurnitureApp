@@ -35,7 +35,7 @@ struct HolderView: View {
             if authModel.user == nil{
                 WelcomeView()
             }else{
-                HomeView()
+                TabBarView()
             }
         }.onAppear{authModel.listenToAuthState()}
     }

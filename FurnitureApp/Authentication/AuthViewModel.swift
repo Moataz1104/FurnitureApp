@@ -9,7 +9,24 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-final class AuthViewModel:ObservableObject{
+
+protocol AuthViewModelProtocol {
+    var user: User? { get }
+    var isLoading: Bool { get }
+    var errorMessage: String? { get }
+    var isError: Bool { get }
+    
+    func listenToAuthState()
+    func signIn(emailAddress: String, password: String)
+    func signUp(emailAddress: String, password: String)
+    func signOut()
+    func resetPassword(emailAddress: String)
+}
+
+
+
+
+final class AuthViewModel:ObservableObject , AuthViewModelProtocol{
     
     @Published var user : User?
     
