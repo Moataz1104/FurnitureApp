@@ -211,6 +211,37 @@
 			path = ProfileScreen;
 			sourceTree = "<group>";
 		};
+		0063C19D2B95985C0099A2A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0063C19E2B9598670099A2A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0063C1912B92FBDA0099A2A5 /* TabBar */,
+				00E2D53C2B86EA3E00BE9ABF /* Authentication */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0063C19F2B95986E0099A2A5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				006472522B9086690064C5D9 /* AuthViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0063C1A02B95996B0099A2A5 /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIService;
+			sourceTree = "<group>";
+		};
 		006472542B9086B60064C5D9 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,11 +277,13 @@
 		00E2D52B2B86E73A00BE9ABF /* FurnitureApp */ = {
 			isa = PBXGroup;
 			children = (
+				0063C19D2B95985C0099A2A5 /* Model */,
+				0063C19E2B9598670099A2A5 /* View */,
+				0063C19F2B95986E0099A2A5 /* ViewModel */,
+				0063C1A02B95996B0099A2A5 /* APIService */,
 				006670F32B8EC762009E78BE /* Helper */,
 				00E2D5532B883B5C00BE9ABF /* Extensions */,
 				00E2D54F2B86F7AF00BE9ABF /* Info.plist */,
-				00E2D53C2B86EA3E00BE9ABF /* Authentication */,
-				0063C1912B92FBDA0099A2A5 /* TabBar */,
 				00E2D52C2B86E73A00BE9ABF /* FurnitureAppApp.swift */,
 				00E2D5302B86E73B00BE9ABF /* Assets.xcassets */,
 				006670BA2B8DDBA4009E78BE /* GoogleService-Info.plist */,
@@ -275,7 +308,6 @@
 				00E2D52E2B86E73A00BE9ABF /* WelcomeView.swift */,
 				00E2D5562B8AC50800BE9ABF /* LogInView.swift */,
 				006670B82B8DBA21009E78BE /* SignUpView.swift */,
-				006472522B9086690064C5D9 /* AuthViewModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";

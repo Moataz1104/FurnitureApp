@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    let columns = [
-           GridItem(.adaptive(minimum: 180))
-       ]
     var body: some View {
         VStack{
             HeaderView()
@@ -18,34 +15,7 @@ struct HomeView: View {
             ScrollView{
                 HorizontalScrollView()
                 
-                ScrollView(showsIndicators: false){
-                    LazyVGrid(columns: columns){
-                        ForEach(0..<20){ _ in
-                            VStack(alignment:.leading){
-                                ZStack(alignment:.bottomTrailing){
-                                    Image(.test)
-                                        .resizable()
-                                        .scaledToFit()
-                                    Button{}label: {
-                                        Image("shopping_bag icon")
-                                            .resizable()
-                                            .foregroundStyle(.white)
-                                            .frame(width: 20,height: 20)
-                                            .frame(width: 30,height: 30)
-                                            .background(RoundedRectangle(
-                                                cornerRadius: 10)
-                                                .foregroundStyle(
-                                                    Color(hex: 0x606060).opacity(0.4)))
-                                            .padding()
-                                    }
-                                    
-                                }
-                                Text("Black Simple Lamp")
-                                Text("$ 12.00")
-                            }.padding()
-                        }
-                    }
-                }
+                VGridView()
             }
             
             
@@ -154,5 +124,42 @@ struct HorizontalScrollView: View {
         .padding(.vertical,15)
         .scrollBounceBehavior(.automatic, axes: .horizontal)
         .padding(.horizontal)
+    }
+}
+
+struct VGridView: View {
+    let columns = [
+           GridItem(.adaptive(minimum: 180))
+       ]
+
+    var body: some View {
+        ScrollView(showsIndicators: false){
+            LazyVGrid(columns: columns){
+                ForEach(0..<20){ _ in
+                    VStack(alignment:.leading){
+                        ZStack(alignment:.bottomTrailing){
+                            Image(.test)
+                                .resizable()
+                                .scaledToFit()
+                            Button{}label: {
+                                Image("shopping_bag icon")
+                                    .resizable()
+                                    .foregroundStyle(.white)
+                                    .frame(width: 20,height: 20)
+                                    .frame(width: 30,height: 30)
+                                    .background(RoundedRectangle(
+                                        cornerRadius: 10)
+                                        .foregroundStyle(
+                                            Color(hex: 0x606060).opacity(0.4)))
+                                    .padding()
+                            }
+                            
+                        }
+                        Text("Black Simple Lamp")
+                        Text("$ 12.00")
+                    }.padding()
+                }
+            }
+        }
     }
 }
