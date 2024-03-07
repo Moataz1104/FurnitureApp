@@ -7,10 +7,11 @@
 
 import SwiftUI
 import NukeUI
-
+import Foundation
 
 struct HomeView: View {
     @State private var viewModel = HomeViewModel()
+    @State var empty = false
     var body: some View {
         VStack{
             HeaderView(viewModel: viewModel)
@@ -19,12 +20,17 @@ struct HomeView: View {
                 HorizontalScrollView(viewModel: viewModel)
                 
                 VGridView(viewModel: viewModel)
-            }
+                
+                
+                PaginationView(viewModel: viewModel)
+                    
             
+            }
         }
     }
 }
 
+//
 //#Preview {
 //    HomeView()
 //}
@@ -120,7 +126,6 @@ struct HorizontalScrollView: View {
                             selectedIndex = index
                         }
                         
-                        viewModel.products.removeAll()
                         viewModel.fetchByKeyWord = item.prefix(while: { $0.isASCII && $0 != "." }).capitalized
                         viewModel.fetchBySearch()
                         
@@ -148,27 +153,19 @@ struct HorizontalScrollView: View {
 
 struct VGridView: View {
     @StateObject var viewModel : HomeViewModel
-    
     let columns = [
         GridItem(.adaptive(minimum: 170)),
     ]
-    
     var body: some View {
         ScrollView(showsIndicators: false){
             LazyVGrid(columns: columns){
-                ForEach(viewModel.products,id:\.id){ product in
+                ForEach(0..<viewModel.products.count , id:\.self) { index in
                     VStack(alignment:.leading){
 //                        DownLoadingImageView(url: product.image)
-                        LoadingImageView(viewModel: viewModel, product: product)
+                        LoadingImageView(viewModel: viewModel, product: viewModel.products[index])
                             
 
-                        
-                        
-                        Text(product.name)
-                            .font(.system(size: 18,weight: .regular))
-                            .foregroundStyle(Color(hex: 0x606060))
-                            .padding(.leading)
-                        Text(product.price.currentPrice.formatted(.currency(code: product.price.currency)))
+                        Text("$\(Int(viewModel.products[index].prices?.first?.regularPrice?.minPrice ?? 0) )")
                             .font(.system(size: 18,weight: .bold))
                             .padding(.leading)
                         
@@ -176,9 +173,13 @@ struct VGridView: View {
                     }.padding(.vertical,16)
                     
                 }
+            }.onChange(of: viewModel.products.count) { oldValue, newValue in
+                print(newValue)
             }
+
             
             .padding()
+            
             
         }
     }
@@ -187,14 +188,13 @@ struct VGridView: View {
 
 struct LoadingImageView: View {
     @StateObject var viewModel : HomeViewModel
-    var product : KeyWordSearchModel
+    var product : ProductModel
     @State var isFav : Bool = false
-//    @State var imageUrl :String
     @State var starting = false
     var body: some View {
         ZStack{
             ZStack(alignment:.bottomTrailing){
-                LazyImage(source: URL(string: product.image))
+                LazyImage(source: URL(string: product.image?.url ?? ""))
                     .onStart({_ in starting = true})
                     .onSuccess({ _ in
                         starting = false
@@ -204,7 +204,7 @@ struct LoadingImageView: View {
                     .clipShape(RoundedRectangle(cornerRadius:15))
                     .shadow(radius: 3)
                     .onTapGesture {
-                        print(product.name)
+                        print("product.name")
                     }
                     
                 
@@ -227,6 +227,35 @@ struct LoadingImageView: View {
 }
 
 
+struct PaginationView :View {
+    @StateObject var viewModel : HomeViewModel
+    var body: some View {
+        if viewModel.products.isEmpty{
+            ProgressView()
+        }else{
+            Button{
+                viewModel.loadData()
+            }label: {
+                HStack(spacing:3){
+                    Text("More Results")
+                    
+                    Image(systemName: "arrow.down")
+                    
+                    if viewModel.isLoading{
+                        ProgressView()
+                            .tint(.white)
+                    }
+                }
+                .foregroundStyle(.white)
+                .padding(6)
+                .background(Color(hex: 0x242424))
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+        }
+        
+    
+    }
+}
 
 //struct DownLoadingImageView: View {
 //    @StateObject var loader:ImageLoadingViewModel

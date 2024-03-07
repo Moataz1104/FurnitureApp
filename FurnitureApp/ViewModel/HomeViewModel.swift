@@ -6,23 +6,35 @@
 //
 
 import Foundation
-
+import Combine
 
 class HomeViewModel : ObservableObject{
-    @Published var products = [KeyWordSearchModel]()
+    private var cancellables = Set<AnyCancellable>()
+
+    @Published var products = [ProductModel]()
     @Published var firstFetch :String = "chair"
     @Published var fetchByKeyWord = ""
     @Published var isUsingSearch = false
-    
+
+    @Published var isLoading = false
+    var offset = 0
     init(){
         loadData()
     }
     
-    func loadData() {
+    
+    func loadData()  {
+        offset += 1
         Task {
-            if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: firstFetch) {
+            DispatchQueue.main.async {[weak self] in
+                self?.isLoading = true
+            }
+
+            if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: firstFetch,offset: offset) {
                 DispatchQueue.main.async {[weak self] in
-                    self?.products = fetchedProducts
+                    self?.products.append(contentsOf: fetchedProducts)
+                    self?.isLoading = false
+
                 }
             }
         }

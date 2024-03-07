@@ -14,13 +14,13 @@ class ApiCall{
     
     
     
-    private let urlString = "https://ikea-api.p.rapidapi.com/keywordSearch"
+    private let urlString = "https://kohls.p.rapidapi.com/products/list?"
     private let apiKey = "f38bda878bmsh5d97a1455c7ed88p1c55bajsn17e9b186f9a6"
     
     
-    func fetchData(keyWord:String)  async throws -> [KeyWordSearchModel]?{
+    func fetchData(keyWord:String,offset:Int = 1)  async throws -> [ProductModel]?{
         
-        let params = ["keyword":keyWord,"countryCode" : "us"]
+        let params = ["keyword":keyWord,"limit" : "24","offset":"\(offset)"]
         guard let url = URL(string: urlString) else{print("Invalid url"); return nil}
 
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
@@ -30,16 +30,16 @@ class ApiCall{
         
         var request = URLRequest(url: finalUrl)
         request.setValue(apiKey, forHTTPHeaderField: "X-RapidAPI-Key")
-        request.setValue("ikea-api.p.rapidapi.com", forHTTPHeaderField: "X-RapidAPI-Host")
+        request.setValue("kohls.p.rapidapi.com", forHTTPHeaderField: "X-RapidAPI-Host")
         
         
         let (data , response) = try await URLSession.shared.data(for: request)
         
         guard (response as? HTTPURLResponse)?.statusCode == 200 else{print("response error \(response)") ; return nil}
         
-        guard let products = try? JSONDecoder().decode([KeyWordSearchModel].self, from: data)
+        guard let decodedData = try? JSONDecoder().decode(KeyWordSearchModel.self, from: data)
         else{print("Decoding failed") ; return nil}
         
-        return products
+        return decodedData.payload.products
     }
 }
