@@ -73,6 +73,7 @@ struct HeaderView: View {
             
             if isTextHidden{
                 TextField("Search by product", text: $viewModel.fetchByKeyWord,onCommit: {
+                    viewModel.products.removeAll()
                     viewModel.isUsingSearch = true
                     viewModel.fetchBySearch()
                 })
@@ -123,6 +124,7 @@ struct HorizontalScrollView: View {
                     Button{
                         withAnimation(.easeInOut(duration: 0.3)) {
                             viewModel.isUsingSearch = false
+                            viewModel.products.removeAll()
                             selectedIndex = index
                         }
                         
@@ -234,7 +236,7 @@ struct PaginationView :View {
             ProgressView()
         }else{
             Button{
-                viewModel.loadData()
+                viewModel.fetchMoreData()
             }label: {
                 HStack(spacing:3){
                     Text("More Results")
@@ -247,10 +249,11 @@ struct PaginationView :View {
                     }
                 }
                 .foregroundStyle(.white)
-                .padding(6)
+                .padding(10)
                 .background(Color(hex: 0x242424))
                 .clipShape(RoundedRectangle(cornerRadius: 15))
             }
+            .padding(.bottom)
         }
         
     
