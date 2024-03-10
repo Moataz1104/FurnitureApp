@@ -10,21 +10,24 @@ import NukeUI
 import Foundation
 
 struct HomeView: View {
+    
     @State private var viewModel = HomeViewModel()
     @State var empty = false
     var body: some View {
-        VStack{
-            HeaderView(viewModel: viewModel)
-            
-            ScrollView{
-                HorizontalScrollView(viewModel: viewModel)
+        NavigationStack{
+            VStack{
+                HeaderView(viewModel: viewModel)
                 
-                VGridView(viewModel: viewModel)
-                
-                
-                PaginationView(viewModel: viewModel)
+                ScrollView{
+                    HorizontalScrollView(viewModel: viewModel)
                     
-            
+                    VGridView(viewModel: viewModel)
+                    
+                    
+                    PaginationView(viewModel: viewModel)
+                    
+                    
+                }
             }
         }
     }
@@ -163,7 +166,6 @@ struct VGridView: View {
             LazyVGrid(columns: columns){
                 ForEach(0..<viewModel.products.count , id:\.self) { index in
                     VStack(alignment:.leading){
-//                        DownLoadingImageView(url: product.image)
                         LoadingImageView(viewModel: viewModel, product: viewModel.products[index])
                             
 
@@ -193,6 +195,7 @@ struct LoadingImageView: View {
     var product : ProductModel
     @State var isFav : Bool = false
     @State var starting = false
+    @State private var isDest = false
     var body: some View {
         ZStack{
             ZStack(alignment:.bottomTrailing){
@@ -206,9 +209,12 @@ struct LoadingImageView: View {
                     .clipShape(RoundedRectangle(cornerRadius:15))
                     .shadow(radius: 3)
                     .onTapGesture {
+                        isDest = true
                         print("product.name")
                     }
-                    
+                
+                
+                
                 
                 Button{
                     isFav.toggle()
@@ -224,8 +230,9 @@ struct LoadingImageView: View {
             if starting {
                 ProgressView()
             }
-        }
+        }.navigationDestination(isPresented: $isDest, destination: {ProductDetailView(product: product)})
     }
+    
 }
 
 
@@ -269,27 +276,33 @@ struct PaginationView :View {
 //
 //
 //    var body: some View {
-//        ZStack(alignment: .bottomTrailing){
-//            if loader.isLoading{
-//                ProgressView()
-//            }else if let image = loader.image{
-//                Image(uiImage: image)
-//                    .resizable()
-//                    .scaledToFit()
-//                    .clipShape(RoundedRectangle(cornerRadius:15))
-//                    .shadow(radius: 3)
-//
-//                Button{}label: {
-//                    Image("shopping_bag icon")
-//                        .resizable()
-//                        .foregroundStyle(.white)
-//                        .frame(width: 20,height: 20)
-//                        .frame(width: 30,height: 30)
-//                        .background(RoundedRectangle(
-//                            cornerRadius: 10)
-//                            .foregroundStyle(
-//                                Color(hex: 0x606060).opacity(0.4)))
-//                        .padding()
+//        NavigationStack{
+//            ZStack(alignment: .bottomTrailing){
+//                if loader.isLoading{
+//                    ProgressView()
+//                }else if let image = loader.image{
+//                    NavigationLink(destination: ProductDetailView()) {
+//                        
+//                        
+//                        Image(uiImage: image)
+//                            .resizable()
+//                            .scaledToFit()
+//                            .clipShape(RoundedRectangle(cornerRadius:15))
+//                            .shadow(radius: 3)
+//                    }
+//                    
+//                    Button{}label: {
+//                        Image("shopping_bag icon")
+//                            .resizable()
+//                            .foregroundStyle(.white)
+//                            .frame(width: 20,height: 20)
+//                            .frame(width: 30,height: 30)
+//                            .background(RoundedRectangle(
+//                                cornerRadius: 10)
+//                                .foregroundStyle(
+//                                    Color(hex: 0x606060).opacity(0.4)))
+//                            .padding()
+//                    }
 //                }
 //            }
 //        }

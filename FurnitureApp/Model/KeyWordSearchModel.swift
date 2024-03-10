@@ -24,18 +24,6 @@ struct PayLoad : Codable {
 
 
 struct ProductModel: Codable  {
-//    static func == (lhs: ProductModel, rhs: ProductModel) -> Bool {
-//        lhs.webID == rhs.webID &&
-//        lhs.productTitle == rhs.productTitle &&
-//        lhs.seoURL == rhs.seoURL &&
-//        lhs.variations == rhs.variations &&
-//        lhs.altImageURL == rhs.altImageURL &&
-//        lhs.prodType == rhs.prodType &&
-//        lhs.availableColr == rhs.availableColr &&
-//        lhs.isAvailableforShip == rhs.isAvailableforShip 
-//
-//
-//    }
     
     let webID : String
     let productTitle: String?

@@ -15,7 +15,7 @@ class ApiCall{
     
     
     private let urlString = "https://kohls.p.rapidapi.com/products/list?"
-    private let apiKey = "f38bda878bmsh5d97a1455c7ed88p1c55bajsn17e9b186f9a6"
+    private let apiKey = "81609dc64dmshfe4e10a6ea92ca8p1a6708jsn41354e2df09a"
     
     
     func fetchData(keyWord:String,offset:Int = 1)  async throws -> [ProductModel]?{
