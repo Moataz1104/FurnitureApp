@@ -13,28 +13,26 @@ struct FavoriteView: View {
     @StateObject private var viewModel = ProductDetailViewModel()
     var body: some View {
         NavigationStack{
-            ScrollView {
-                ForEach(products){product in
-                    NavigationLink(destination: ProductDetailView(product: product)) {
-                        
-                        FavoriteItemView(product: product)
+            if products.isEmpty{
+                Image(.emptyState)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300,height: 450)
+            }else{
+                ScrollView {
+                    ForEach(products){product in
+                        NavigationLink(destination: ProductDetailView(product: product)) {
+                            
+                            FavoriteItemView(product: product)
+                        }
                     }
                 }
-            }
-            .navigationTitle("Favorites")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar{
-                ToolbarItem(placement: .confirmationAction) {
-                    Button{}label: {
-                        Image(systemName: "cart")
-                            .tint(.main)
-                    }
-                }
+                .navigationTitle("Favorites")
+                .navigationBarTitleDisplayMode(.inline)
             }
         }
     }
 }
-
 
 struct FavoriteItemView: View {
     @State var product : Product
@@ -78,20 +76,7 @@ struct FavoriteItemView: View {
                             .foregroundStyle(.main)
                     }
                     Spacer()
-                    Button{}label: {
-                        Image(.bag)
-                            .interpolation(.none)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 22,height: 22)
-                            .padding(5)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .foregroundColor(Color(hex: 0xE0E0E0).opacity(0.6))
-                            )
-                        
-                    }
-                    
+                    EmptyView()
                 }
             }.padding()
             

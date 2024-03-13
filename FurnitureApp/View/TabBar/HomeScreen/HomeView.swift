@@ -69,8 +69,6 @@ struct HeaderView: View {
                     }
                     
                     Spacer()
-                    Image(systemName: "cart")
-                        .font(.title2)
                 }
             }
             

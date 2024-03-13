@@ -200,35 +200,19 @@ struct FooterButtonsView: View {
     @StateObject var viewModel : ProductDetailViewModel
     @State private var isFav = false
     var body: some View {
-        HStack{
-            Button{
-                isFav.toggle()
-                if let productDetails = viewModel.productDetails{
-                    context.insert(productDetails)
-                }
-            }label: {
-                
-                
-                Rectangle()
-                    .frame(width: 50,height: 50)
-                    .foregroundStyle(.gray.opacity(0.4))
-                    .overlay{
-                        Image(systemName:"heart.fill")
-                            .resizable()
-                            .frame(width: 20,height: 20)
-                            .foregroundStyle(isFav ? .red :.gray.opacity(0.8))
-                    }
+        
+        Button{
+            if let productDetails = viewModel.productDetails{
+                context.insert(productDetails)
             }
+        }label: {
+            Text("Add to Favorites +")
+                .foregroundStyle(.white)
+                .padding()
+                .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                .frame(width: 280,height: 50)
+                .background(.main)
             
-            
-            Button{}label: {
-                Text("Add to Cart +")
-                    .foregroundStyle(.white)
-                    .padding()
-                    .clipShape(Rectangle())
-                    .frame(width: 220,height: 50)
-                    .background(.main)
-            }
             
         }.padding(.bottom,25)
     }
