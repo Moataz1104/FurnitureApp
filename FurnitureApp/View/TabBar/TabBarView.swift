@@ -16,7 +16,6 @@ struct TabBarView: View {
             
             FavoriteView()
                 .tabItem { Label("", systemImage:"bookmark" ) }
-                .toolbarBackground(Color.black, for: .tabBar)
             
             
             StoresMapView()

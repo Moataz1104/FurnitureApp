@@ -34,18 +34,18 @@ class ProductDetailViewModel:ObservableObject {
 
         }
     }
-    private func getShortText(fetched : Product){
+    func getShortText(fetched : Product){
         DispatchQueue.main.async{[weak self] in
-            guard let shortDescription = fetched.description?.shortDescription else { return}
+            guard let shortDescription = fetched.productDescription?.shortDescription else { return}
             guard let data = shortDescription.data(using: .utf8) else { return }
             guard let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) else { return }
             self?.shortDesc = attributedString.string
         }
     }
     
-    private func getLongText(fetched : Product){
+    func getLongText(fetched : Product){
         DispatchQueue.main.async{[weak self] in
-            guard let longDescription = fetched.description?.longDescription else { return}
+            guard let longDescription = fetched.productDescription?.longDescription else { return}
             guard let data = longDescription.data(using: .utf8) else { return }
             guard let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) else { return }
             self?.longDesc = attributedString.string

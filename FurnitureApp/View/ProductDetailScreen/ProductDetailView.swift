@@ -11,22 +11,39 @@ struct ProductDetailView: View {
     @StateObject private var viewModel = ProductDetailViewModel()
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
-    var product : ProductModel
+    var productDetail : ProductModel?
+    var product : Product?
     
 
     var body: some View {
         ScrollView{
             VStack{
-                ImagesSliderView(viewModel: viewModel, product: product, screenWidth: screenWidth, screenHeight: screenHeight)
+                if let productDetail{
+                    ImagesSliderView(viewModel: viewModel, productDetail: productDetail, screenWidth: screenWidth, screenHeight: screenHeight)
+                }else{
+                    ImagesSliderView(viewModel: viewModel, screenWidth: screenWidth, screenHeight: screenHeight)
+
+                }
                 
                 ProductInfoView(viewModel: viewModel)
                     .padding(.bottom)
                 ProductMetaDataView(viewModel: viewModel)
                 
                 if !viewModel.isLoading{
-                    FooterButtonsView()
+                    FooterButtonsView(viewModel: viewModel)
                 }
             }
+            .onAppear{
+                if let productDetail{
+                    viewModel.fetchProductDetails(id:productDetail.webID)
+                }else if let product{
+                    viewModel.getShortText(fetched: product)
+                    viewModel.getLongText(fetched: product)
+                    viewModel.productDetails = product
+                }
+                
+            }
+
         }
 
     }
@@ -34,7 +51,7 @@ struct ProductDetailView: View {
 
 struct ImagesSliderView: View {
     @StateObject var viewModel : ProductDetailViewModel
-    var product : ProductModel
+    var productDetail : ProductModel?
 
     let screenWidth:Double
     let screenHeight:Double
@@ -57,9 +74,6 @@ struct ImagesSliderView: View {
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         }
         .frame(width: screenWidth,height: screenHeight * 0.6)
-        .onAppear{
-            viewModel.fetchProductDetails(id:product.webID)
-        }
     }
 }
 
@@ -182,10 +196,17 @@ struct ProductMetaDataView : View {
 }
 
 struct FooterButtonsView: View {
+    @Environment(\.modelContext) var context
+    @StateObject var viewModel : ProductDetailViewModel
     @State private var isFav = false
     var body: some View {
         HStack{
-            Button{}label: {
+            Button{
+                isFav.toggle()
+                if let productDetails = viewModel.productDetails{
+                    context.insert(productDetails)
+                }
+            }label: {
                 
                 
                 Rectangle()
@@ -196,9 +217,6 @@ struct FooterButtonsView: View {
                             .resizable()
                             .frame(width: 20,height: 20)
                             .foregroundStyle(isFav ? .red :.gray.opacity(0.8))
-                            .onTapGesture {
-                                isFav.toggle()
-                            }
                     }
             }
             

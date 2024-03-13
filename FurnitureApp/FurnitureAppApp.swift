@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
+import SwiftData
 @main
 struct FurnitureAppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -14,6 +15,7 @@ struct FurnitureAppApp: App {
         WindowGroup {
             HolderView().environmentObject(AuthViewModel())
         }
+        .modelContainer(for: Product.self)
     }
 }
 

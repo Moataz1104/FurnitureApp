@@ -193,7 +193,6 @@ struct VGridView: View {
 struct LoadingImageView: View {
     @StateObject var viewModel : HomeViewModel
     var product : ProductModel
-    @State var isFav : Bool = false
     @State var starting = false
     @State private var isDest = false
     var body: some View {
@@ -212,25 +211,11 @@ struct LoadingImageView: View {
                         isDest = true
                         print("product.name")
                     }
-                
-                
-                
-                
-                Button{
-                    isFav.toggle()
-                }
-            label: {
-                Image(systemName: "heart.fill")
-                    .resizable()
-                    .foregroundStyle(isFav ? .red : .gray)
-                    .frame(width: 20,height: 20)
-                    .padding()
-               }
             }
             if starting {
                 ProgressView()
             }
-        }.navigationDestination(isPresented: $isDest, destination: {ProductDetailView(product: product)})
+        }.navigationDestination(isPresented: $isDest, destination: {ProductDetailView(productDetail: product)})
     }
     
 }
