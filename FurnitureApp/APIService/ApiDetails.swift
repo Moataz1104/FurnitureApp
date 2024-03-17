@@ -13,7 +13,7 @@ class ApiDetails{
     private init(){}
     
     private let urlString = "https://kohls.p.rapidapi.com/products/detail"
-    private let apiKey = "81609dc64dmshfe4e10a6ea92ca8p1a6708jsn41354e2df09a"
+    private let apiKey = "2cd576f167mshbd64d6e65c83006p136afejsn3acbffa306ac"
 
     
     

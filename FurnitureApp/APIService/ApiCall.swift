@@ -15,12 +15,12 @@ class ApiCall{
     
     
     private let urlString = "https://kohls.p.rapidapi.com/products/list?"
-    private let apiKey = "81609dc64dmshfe4e10a6ea92ca8p1a6708jsn41354e2df09a"
+    private let apiKey = "2cd576f167mshbd64d6e65c83006p136afejsn3acbffa306ac"
+
     
-    
-    func fetchData(keyWord:String,offset:Int = 1)  async throws -> [ProductModel]?{
+    func fetchData(keyWord:String,offset:Int = 1)  async throws -> KeyWordSearchModel?{
         
-        let params = ["keyword":keyWord,"limit" : "24","offset":"\(offset)"]
+        let params = ["keyword":keyWord,"limit" : "20","offset":"\(offset)"]
         guard let url = URL(string: urlString) else{print("Invalid url"); return nil}
 
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
@@ -40,6 +40,6 @@ class ApiCall{
         guard let decodedData = try? JSONDecoder().decode(KeyWordSearchModel.self, from: data)
         else{print("Decoding failed") ; return nil}
         
-        return decodedData.payload.products
+        return decodedData
     }
 }

@@ -102,9 +102,13 @@ struct ProductInfoView:View {
                             Text(viewModel.productDetails?.avgRating ?? "0")
                                 .font(.system(size: 22,weight: .bold))
                         }
-                        Text("(50 reviews)")
-                            .font(.system(size: 17,weight: .semibold))
-                            .foregroundStyle(Color(hex: 0x808080))
+                        NavigationLink(destination: ReviewView(product: viewModel.productDetails)) {
+                            Text("Reviews")
+                                .underline()
+                                .font(.system(size: 17,weight: .semibold))
+                                .foregroundStyle(Color(hex: 0x808080))
+                        }
+                        .padding(.leading,5)
                     }
                 }
                 

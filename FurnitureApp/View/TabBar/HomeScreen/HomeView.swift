@@ -12,7 +12,6 @@ import Foundation
 struct HomeView: View {
     
     @State private var viewModel = HomeViewModel()
-    @State var empty = false
     var body: some View {
         NavigationStack{
             VStack{
@@ -28,6 +27,9 @@ struct HomeView: View {
                     
                     
                 }
+            }
+            .onChange(of: viewModel.products.count) { oldValue, newValue in
+                print("Products Count is \(newValue)")
             }
         }
     }
@@ -224,6 +226,8 @@ struct PaginationView :View {
     var body: some View {
         if viewModel.products.isEmpty{
             ProgressView()
+        }else if viewModel.products.count > Int(viewModel.totalResults)!{
+            EmptyView()
         }else{
             Button{
                 viewModel.fetchMoreData()

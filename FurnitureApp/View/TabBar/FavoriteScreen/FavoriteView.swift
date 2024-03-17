@@ -42,7 +42,7 @@ struct FavoriteItemView: View {
             HStack(alignment:.top){
                 HStack(alignment:.top){
                     
-                    AsyncImage(url: URL(string: product.allImages?[1].newUrl ?? "")){image in
+                    AsyncImage(url: URL(string: product.allImages?[0].newUrl ?? "")){image in
                         if let image = image.image{
                             image
                                 .resizable()

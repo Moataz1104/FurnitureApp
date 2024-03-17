@@ -10,7 +10,8 @@ import Combine
 
 class HomeViewModel : ObservableObject{
     @Published var products = [ProductModel]()
-    @Published var fetchByKeyWord = "chair"
+    @Published var totalResults = ""
+    @Published var fetchByKeyWord = "chairs"
     @Published var isUsingSearch = false
     @Published var isLoading = false
     
@@ -29,7 +30,8 @@ class HomeViewModel : ObservableObject{
 
             if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: fetchByKeyWord) {
                 DispatchQueue.main.async {[weak self] in
-                    self?.products = fetchedProducts
+                    self?.products = fetchedProducts.payload.products ?? []
+                    self?.totalResults = "\(fetchedProducts.count)"
                     self?.isLoading = false
 
                 }
@@ -42,7 +44,7 @@ class HomeViewModel : ObservableObject{
         Task {
             if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: fetchByKeyWord) {
                 DispatchQueue.main.async {[weak self] in
-                    self?.products = fetchedProducts
+                    self?.products = fetchedProducts.payload.products ?? []
                 }
             }
         }
@@ -58,7 +60,7 @@ class HomeViewModel : ObservableObject{
 
             if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: fetchByKeyWord,offset: offset) {
                 DispatchQueue.main.async {[weak self] in
-                    self?.products.append(contentsOf: fetchedProducts)
+                    self?.products.append(contentsOf: fetchedProducts.payload.products ?? [])
                     self?.isLoading = false
 
                 }
