@@ -29,7 +29,9 @@ struct ProductDetailView: View {
                     .padding(.bottom)
                 ProductMetaDataView(viewModel: viewModel)
                 
-                if !viewModel.isLoading{
+            }
+            .toolbar{
+                ToolbarItem(placement: .confirmationAction) {
                     FooterButtonsView(viewModel: viewModel)
                 }
             }
@@ -208,16 +210,13 @@ struct FooterButtonsView: View {
         Button{
             if let productDetails = viewModel.productDetails{
                 context.insert(productDetails)
+                isFav = true
             }
         }label: {
-            Text("Add to Favorites +")
-                .foregroundStyle(.white)
-                .padding()
-                .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                .frame(width: 280,height: 50)
-                .background(.main)
-            
-            
-        }.padding(.bottom,25)
+            Image(systemName: "bookmark.fill")
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(isFav ? .main : .gray.opacity(0.4))
+        }
     }
 }

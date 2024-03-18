@@ -35,9 +35,11 @@ final class AuthViewModel:ObservableObject , AuthViewModelProtocol{
     @Published var isError = false
     
     func listenToAuthState(){
-        Auth.auth().addStateDidChangeListener {[weak self] _, user in
-            guard let self = self else{return}
-            self.user = user
+        DispatchQueue.main.async {
+            Auth.auth().addStateDidChangeListener {[weak self] _, user in
+                guard let self = self else{return}
+                self.user = user
+            }
         }
     }
     

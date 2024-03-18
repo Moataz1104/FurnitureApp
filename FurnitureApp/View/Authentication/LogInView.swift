@@ -85,9 +85,9 @@ struct LogInView: View {
     }
 }
 
-#Preview {
-    LogInView()
-}
+//#Preview {
+//    LogInView()
+//}
 
 
 struct InnerLogInView : View{
