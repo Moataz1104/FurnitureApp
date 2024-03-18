@@ -20,8 +20,9 @@ struct HomeView: View {
                 ScrollView{
                     HorizontalScrollView(viewModel: viewModel)
                     
-                    VGridView(viewModel: viewModel)
+
                     
+                    VGridView(viewModel: viewModel)
                     
                     PaginationView(viewModel: viewModel)
                     
@@ -163,6 +164,10 @@ struct VGridView: View {
     ]
     var body: some View {
         ScrollView(showsIndicators: false){
+            SortingView(viewModel: viewModel)
+                .frame(maxWidth: .infinity,alignment: .leading)
+                .padding(.leading)
+            
             LazyVGrid(columns: columns){
                 ForEach(0..<viewModel.products.count , id:\.self) { index in
                     VStack(alignment:.leading){
@@ -226,7 +231,7 @@ struct PaginationView :View {
     var body: some View {
         if viewModel.products.isEmpty{
             ProgressView()
-        }else if viewModel.products.count > Int(viewModel.totalResults)!{
+        }else if viewModel.products.count >= Int(viewModel.totalResults)!{
             EmptyView()
         }else{
             Button{
@@ -251,6 +256,25 @@ struct PaginationView :View {
         }
         
     
+    }
+}
+
+struct SortingView:View {
+    @StateObject var viewModel : HomeViewModel
+    @State private var sortingDic = ["Price ↓" : "4" , "Price ↑" : "5" ,"Highest Rated" : "6"]
+    @State private var selectedSort = ""
+    var body: some View {
+        Picker("", selection: $selectedSort) {
+            Text("All").tag("")
+            ForEach(sortingDic.keys.sorted() , id:\.self){key in
+                Text(key).tag(key)
+            }
+        }
+        .onChange(of: selectedSort) { oldValue, newValue in
+            viewModel.sortingId = sortingDic[selectedSort]!
+            viewModel.products.removeAll()
+            viewModel.loadData()
+        }
     }
 }
 

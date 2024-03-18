@@ -15,12 +15,12 @@ class ApiCall{
     
     
     private let urlString = "https://kohls.p.rapidapi.com/products/list?"
-    private let apiKey = "2cd576f167mshbd64d6e65c83006p136afejsn3acbffa306ac"
+    private let apiKey = "14fd0f7eefmsh5a8d05ff1d59cddp1b37fcjsnaf140f2fa871"
 
     
-    func fetchData(keyWord:String,offset:Int = 1)  async throws -> KeyWordSearchModel?{
+    func fetchData(keyWord:String,offset:Int = 0,sortId : String = "6")  async throws -> KeyWordSearchModel?{
         
-        let params = ["keyword":keyWord,"limit" : "20","offset":"\(offset)"]
+        let params = ["keyword":keyWord,"limit" : "20","offset":"\(offset)","sortID":sortId]
         guard let url = URL(string: urlString) else{print("Invalid url"); return nil}
 
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
