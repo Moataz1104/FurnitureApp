@@ -30,10 +30,6 @@ struct ReviewView: View {
     }
 }
 
-//#Preview {
-//    ReviewView()
-//}
-
 struct ProductReviewView: View {
     @StateObject var viewModel : ReviewsViewModel
     var product : Product
@@ -55,11 +51,6 @@ struct ProductReviewView: View {
                 }
                 
 
-//                Image(.testii)
-//                    .resizable()
-//                    .scaledToFill()
-//                    .clipShape(RoundedRectangle(cornerRadius: 15))
-//                    .frame(width: 100,height: 100)
                 
                 VStack(alignment:.leading,spacing:15){
                     Text(product.productTitle ?? "No Data")

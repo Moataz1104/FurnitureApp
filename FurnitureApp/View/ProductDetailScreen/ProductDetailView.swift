@@ -13,38 +13,56 @@ struct ProductDetailView: View {
     let screenHeight = UIScreen.main.bounds.height
     var productDetail : ProductModel?
     var product : Product?
-    
 
     var body: some View {
-        ScrollView{
-            VStack{
-                if let productDetail{
-                    ImagesSliderView(viewModel: viewModel, productDetail: productDetail, screenWidth: screenWidth, screenHeight: screenHeight)
-                }else{
-                    ImagesSliderView(viewModel: viewModel, screenWidth: screenWidth, screenHeight: screenHeight)
-
+        ZStack(alignment:.bottom){
+            ScrollView{
+                VStack{
+                    if let productDetail{
+                        ImagesSliderView(viewModel: viewModel, productDetail: productDetail, screenWidth: screenWidth, screenHeight: screenHeight)
+                    }else{
+                        ImagesSliderView(viewModel: viewModel, screenWidth: screenWidth, screenHeight: screenHeight)
+                        
+                    }
+                    
+                    ProductInfoView(viewModel: viewModel)
+                        .padding(.bottom)
+                    ProductMetaDataView(viewModel: viewModel)
+                    
                 }
-                
-                ProductInfoView(viewModel: viewModel)
-                    .padding(.bottom)
-                ProductMetaDataView(viewModel: viewModel)
+                .toolbar{
+                    ToolbarItem(placement: .confirmationAction) {
+                        FooterButtonsView(viewModel: viewModel)
+                    }
+                }
+                .onAppear{
+                    if let productDetail{
+                        viewModel.fetchProductDetails(id:productDetail.webID)
+                    }else if let product{
+                        viewModel.getShortText(fetched: product)
+                        viewModel.getLongText(fetched: product)
+                        viewModel.productDetails = product
+                    }
+                    
+                }
+                Rectangle()
+                    .frame(height: 60)
+                    .foregroundStyle(.clear)
                 
             }
-            .toolbar{
-                ToolbarItem(placement: .confirmationAction) {
-                    FooterButtonsView(viewModel: viewModel)
-                }
+            
+            Button{
+            }label: {
+                Text("Add to cart +")
+                    .font(.system(size: 18,weight: .semibold))
+                    .padding()
+                    .foregroundStyle(.white)
+                    .frame(width: 250 )
+                    .background(.main)
+                    
             }
-            .onAppear{
-                if let productDetail{
-                    viewModel.fetchProductDetails(id:productDetail.webID)
-                }else if let product{
-                    viewModel.getShortText(fetched: product)
-                    viewModel.getLongText(fetched: product)
-                    viewModel.productDetails = product
-                }
-                
-            }
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(.bottom)
 
         }
 
@@ -216,7 +234,7 @@ struct FooterButtonsView: View {
             Image(systemName: "bookmark.fill")
                 .resizable()
                 .scaledToFit()
-                .foregroundStyle(isFav ? .main : .gray.opacity(0.4))
+                .foregroundStyle(isFav ? .main : .gray.opacity(0.7))
         }
     }
 }

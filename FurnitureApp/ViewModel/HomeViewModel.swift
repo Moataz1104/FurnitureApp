@@ -30,7 +30,7 @@ class HomeViewModel : ObservableObject{
                 self?.isLoading = true
             }
 
-            if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: fetchByKeyWord,sortId: sortingId) {
+            if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: fetchByKeyWord) {
                 DispatchQueue.main.async {[weak self] in
                     self?.products = fetchedProducts.payload.products ?? []
                     self?.totalResults = "\(fetchedProducts.count)"
@@ -44,7 +44,7 @@ class HomeViewModel : ObservableObject{
     
     func fetchBySearch(){
         Task {
-            if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: fetchByKeyWord , sortId: sortingId) {
+            if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: fetchByKeyWord) {
                 DispatchQueue.main.async {[weak self] in
                     self?.products = fetchedProducts.payload.products ?? []
                 }
@@ -60,7 +60,7 @@ class HomeViewModel : ObservableObject{
                 self?.isLoading = true
             }
 
-            if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: fetchByKeyWord,offset: offset , sortId: sortingId) {
+            if let fetchedProducts = try! await ApiCall.shared.fetchData(keyWord: fetchByKeyWord) {
                 DispatchQueue.main.async {[weak self] in
                     self?.products.append(contentsOf: fetchedProducts.payload.products ?? [])
                     self?.isLoading = false

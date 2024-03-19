@@ -164,9 +164,9 @@ struct VGridView: View {
     ]
     var body: some View {
         ScrollView(showsIndicators: false){
-            SortingView(viewModel: viewModel)
-                .frame(maxWidth: .infinity,alignment: .leading)
-                .padding(.leading)
+//            SortingView(viewModel: viewModel)
+//                .frame(maxWidth: .infinity,alignment: .leading)
+//                .padding(.leading)
             
             LazyVGrid(columns: columns){
                 ForEach(0..<viewModel.products.count , id:\.self) { index in
@@ -211,7 +211,7 @@ struct LoadingImageView: View {
                     .transition(.opacity)
                     .aspectRatio(contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius:15))
-                    .shadow(radius: 3)
+                    .shadow(radius: 1)
                     .onTapGesture {
                         isDest = true
                         print("product.name")
@@ -271,7 +271,7 @@ struct SortingView:View {
             }
         }
         .onChange(of: selectedSort) { oldValue, newValue in
-            viewModel.sortingId = sortingDic[selectedSort]!
+            viewModel.sortingId = sortingDic[selectedSort] ?? "0"
             viewModel.products.removeAll()
             viewModel.loadData()
         }

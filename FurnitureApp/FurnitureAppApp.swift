@@ -13,7 +13,8 @@ struct FurnitureAppApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            HolderView().environmentObject(AuthViewModel())
+            HolderView()
+                .environmentObject(AuthViewModel())
         }
         .modelContainer(for: Product.self)
     }

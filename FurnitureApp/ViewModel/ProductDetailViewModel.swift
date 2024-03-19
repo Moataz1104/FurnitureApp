@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Combine
 
 class ProductDetailViewModel:ObservableObject {
     @Published var productDetails : Product?
@@ -28,7 +28,6 @@ class ProductDetailViewModel:ObservableObject {
                     self?.getShortText(fetched: fetchedDetails)
                     self?.getLongText(fetched: fetchedDetails)
                     self?.isLoading = false
-
                 }
             }
 

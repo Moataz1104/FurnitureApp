@@ -18,9 +18,9 @@ struct TabBarView: View {
                 .tabItem { Label("", systemImage:"bookmark" ) }
             
             
-//            StoresMapView()
-//                .tabItem{Label("", systemImage: "location.circle")}
-//            
+            CartView()
+                .tabItem{Label("", systemImage: "cart.fill")}
+            
             ProfileView()
                 .tabItem { Label("", systemImage: "person") }
 

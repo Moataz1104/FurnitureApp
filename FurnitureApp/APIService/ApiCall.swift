@@ -18,9 +18,9 @@ class ApiCall{
     private let apiKey = "14fd0f7eefmsh5a8d05ff1d59cddp1b37fcjsnaf140f2fa871"
 
     
-    func fetchData(keyWord:String,offset:Int = 0,sortId : String = "6")  async throws -> KeyWordSearchModel?{
+    func fetchData(keyWord:String,offset:Int = 0)  async throws -> KeyWordSearchModel?{
         
-        let params = ["keyword":keyWord,"limit" : "20","offset":"\(offset)","sortID":sortId]
+        let params = ["keyword":keyWord,"limit" : "20","offset":"\(offset)"]
         guard let url = URL(string: urlString) else{print("Invalid url"); return nil}
 
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
