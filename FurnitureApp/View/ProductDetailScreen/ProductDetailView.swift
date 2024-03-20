@@ -9,6 +9,8 @@ import SwiftUI
 import NukeUI
 struct ProductDetailView: View {
     @StateObject private var viewModel = ProductDetailViewModel()
+    @EnvironmentObject var cartManager : CartManager
+    
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
     var productDetail : ProductModel?
@@ -52,6 +54,9 @@ struct ProductDetailView: View {
             }
             
             Button{
+                if let product = viewModel.productDetails{
+                    cartManager.addToCart(product: product)
+                }
             }label: {
                 Text("Add to cart +")
                     .font(.system(size: 18,weight: .semibold))
@@ -68,6 +73,7 @@ struct ProductDetailView: View {
 
     }
 }
+
 
 struct ImagesSliderView: View {
     @StateObject var viewModel : ProductDetailViewModel

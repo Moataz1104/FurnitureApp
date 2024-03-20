@@ -14,7 +14,7 @@ struct FavoriteView: View {
     var body: some View {
         NavigationStack{
             if products.isEmpty{
-                Image(.emptyState)
+                Image(.noFavorite)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 300,height: 450)
