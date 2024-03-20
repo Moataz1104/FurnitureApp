@@ -10,11 +10,10 @@ import Foundation
 
 class CartManager : ObservableObject {
     
-    var cartProducts = [Product]()
+    var cartProducts = [Product:Int]()
     
     func addToCart(product:Product){
-        cartProducts.append(product)
-        print("Cart Manager : \(cartProducts.count)")
+        cartProducts[product] = 1
     }
     
 }

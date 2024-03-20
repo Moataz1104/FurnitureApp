@@ -9,21 +9,21 @@ import SwiftUI
 
 struct CartView: View {
     @EnvironmentObject private var cartManager : CartManager
-    @State var cartProducts = [Product]()
+    @StateObject var viewModel = CartViewModel()
     var body: some View {
         NavigationStack{
             VStack{
-                if cartProducts.isEmpty{
+                if viewModel.cartProducts.isEmpty{
                     Image(.noCart)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 300,height: 450)
                     
                 }else{
-                    ScrollView(showsIndicators:false){
+                    VStack{
                         ScrollView{
-                            ForEach(cartProducts) { product in
-                                CartProductView(cartProducts:$cartProducts, product: product)
+                            ForEach(Array(viewModel.cartProducts.keys) , id: \.self) { product in
+                                CartProductView(viewModel:viewModel, product: product)
                             }
                         }
                         .padding(.top)
@@ -31,18 +31,18 @@ struct CartView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         
                         Spacer()
-                        CheckOutView()
+                        CheckOutView(viewModel: viewModel)
                             .padding(.vertical)
                         
                     }
                 }
             }
             .onAppear{
-                cartProducts = cartManager.cartProducts
+                viewModel.cartProducts = cartManager.cartProducts
                 print("Cart View Proudcts count: \(cartManager.cartProducts.count)")
             }
             .onDisappear{
-                cartManager.cartProducts = cartProducts
+                cartManager.cartProducts = viewModel.cartProducts
             }
             
         }
@@ -50,22 +50,19 @@ struct CartView: View {
     
 }
 
-#Preview {
-    CheckOutView()
-}
-
+//#Preview {
+//    CheckOutView()
+//}
+//
 struct CartProductView: View {
-    @Binding var cartProducts : [Product]
+    @StateObject var viewModel : CartViewModel
     let product : Product
+    @State var reachMin = true
+    @State var reachMax = false
     var body: some View {
         VStack{
             HStack(alignment:.top){
                 HStack{
-                    //                    Image(.testii)
-                    //                        .resizable()
-                    //                        .scaledToFit()
-                    //                        .clipShape(.rect(cornerRadius: 10))
-                    //                        .frame(width: 100,height: 100)
                     AsyncImage(url:
                                 URL(string: product.allImages?.first?.newUrl ?? "")!){image in
                         if let image = image.image {
@@ -86,33 +83,53 @@ struct CartProductView: View {
                             .font(.system(size: 14,weight: .semibold))
                             .foregroundStyle(.subTitle)
                         
-                        Text("$\(Int((product.price?.regularPrice?.minPrice) ?? 0) )")
+                        Text("$\(Int((product.price?.regularPrice?.minPrice) ?? 0) * (viewModel.cartProducts[product] ?? 0))")
                             .font(.system(size: 16,weight: .bold))
                             .padding(.top,5)
                         
                         Spacer()
                         
                         HStack(spacing:20){
-                            Button{}label: {
+                            Button{
+                                viewModel.cartProducts[product]! += 1
+                            }label: {
                                 Image(systemName: "plus")
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(reachMax ? .black.opacity(0.2) : .black)
                                     .frame(width: 30,height: 30)
                                     .background(Color(hex: 0xE0E0E0))
                                     .clipShape(.rect(cornerRadius: 4))
-                                
                             }
-                            Text("01")
+                            .disabled(reachMax ? true : false)
+
+                            Text("\(viewModel.cartProducts[product] ?? 0)")
                                 .font(.system(size: 17,weight: .semibold))
                             
-                            Button{}label: {
+                            Button{
+                                viewModel.cartProducts[product]! -= 1
+
+                            }label: {
                                 Image(systemName: "minus")
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(reachMin ? .black.opacity(0.5) : .black)
                                     .frame(width: 30,height: 30)
                                     .background(Color(hex: 0xE0E0E0))
                                     .clipShape(.rect(cornerRadius: 4))
                                 
-                            }
+                            }                                  
+                            .disabled(reachMin ? true : false)
+
                             
+                        }
+                        .onChange(of: viewModel.cartProducts[product]) { oldValue, newValue in
+                            if let stepperValue = newValue{
+                                if stepperValue <= 1{
+                                    reachMin = true
+                                }else if stepperValue == 7 {
+                                    reachMax = true
+                                }else{
+                                    reachMin = false
+                                    reachMax = false
+                                }
+                            }
                         }
                         
                     }.padding(.vertical,5)
@@ -120,7 +137,7 @@ struct CartProductView: View {
                 Spacer()
                 
                 Button{
-                    cartProducts.removeAll(where: {$0 == product})
+                    viewModel.cartProducts.removeValue(forKey: product)
                 }label: {
                     Image(systemName: "x.circle")
                         .font(.title2)
@@ -138,6 +155,7 @@ struct CartProductView: View {
 }
 
 struct CheckOutView:View {
+    @StateObject var viewModel : CartViewModel
     var body: some View {
         VStack(spacing:20){
             HStack{
@@ -145,7 +163,7 @@ struct CheckOutView:View {
                     .font(.system(size: 20,weight: .bold))
                     .foregroundStyle(Color(hex: 0x808080))
                 Spacer()
-                Text("$95")
+                Text(viewModel.totalCost)
                     .font(.system(size: 20,weight: .bold))
             }
             .padding(.horizontal)
