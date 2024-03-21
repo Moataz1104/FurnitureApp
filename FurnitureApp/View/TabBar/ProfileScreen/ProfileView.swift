@@ -19,7 +19,9 @@ struct ProfileView: View {
                     
                     VStack(spacing:30){
                         ForEach(profileArray , id:\.self) { text in
-                            ProfileFormView(text: text)
+                            NavigationLink(destination: ShippingAddressView()) {
+                                ProfileFormView(text: text)
+                            }
                         }
                     }
                 }
