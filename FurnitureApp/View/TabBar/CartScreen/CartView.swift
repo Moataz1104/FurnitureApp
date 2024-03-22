@@ -31,7 +31,7 @@ struct CartView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         
                         Spacer()
-                        CheckOutView(viewModel: viewModel)
+                        BillView(viewModel: viewModel)
                             .padding(.vertical)
                         
                     }
@@ -154,7 +154,7 @@ struct CartProductView: View {
     }
 }
 
-struct CheckOutView:View {
+struct BillView:View {
     @StateObject var viewModel : CartViewModel
     var body: some View {
         VStack(spacing:20){
@@ -163,13 +163,13 @@ struct CheckOutView:View {
                     .font(.system(size: 20,weight: .bold))
                     .foregroundStyle(Color(hex: 0x808080))
                 Spacer()
-                Text(viewModel.totalCost)
+                Text("$ \(viewModel.totalCost)")
                     .font(.system(size: 20,weight: .bold))
             }
             .padding(.horizontal)
             
             
-            Button{}label: {
+            NavigationLink(destination: CheckOutView(totalCost: viewModel.totalCost)) {
                 Text("Check Out")
                     .font(.system(size: 20,weight: .semibold))
                     .padding()
@@ -178,6 +178,7 @@ struct CheckOutView:View {
                     .background(.main)
                     .clipShape(.rect(cornerRadius: 10))
                     .padding(.horizontal)
+
             }
         }
     }

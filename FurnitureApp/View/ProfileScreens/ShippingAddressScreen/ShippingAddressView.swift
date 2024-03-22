@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShippingAddressView: View {
+    @EnvironmentObject var addressManager : AddressesManager
     @State private var showingSheet = false
     @StateObject var viewModel = ShippingAddressViewModel()
     var body: some View {
@@ -83,6 +84,9 @@ struct ShippingAddressView: View {
                 
             }
         }
+        .onAppear{viewModel.userAddresses = addressManager.addresses}
+        .onDisappear{addressManager.addresses = viewModel.userAddresses}
+
     }
 }
 
@@ -241,6 +245,7 @@ struct SaveView:View {
                 .padding(.horizontal)
         }
         .disabled(viewModel.isButtonDisabled ? false : true)
+        .padding(.bottom)
 
     }
 }

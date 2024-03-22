@@ -16,6 +16,8 @@
 		0043A44F2BAB9E0400928971 /* ShippingAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043A44E2BAB9E0400928971 /* ShippingAddressView.swift */; };
 		0043A4512BABA34800928971 /* ShippingAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043A4502BABA34800928971 /* ShippingAddressViewModel.swift */; };
 		0043A4532BABA3B300928971 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043A4522BABA3B300928971 /* AddressModel.swift */; };
+		0043A4562BAD245300928971 /* CheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043A4552BAD245300928971 /* CheckOutView.swift */; };
+		0043A4582BAD324D00928971 /* AddressesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043A4572BAD324D00928971 /* AddressesManager.swift */; };
 		005A26532BA139E300C659B2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 005A26522BA139E300C659B2 /* FirebaseAnalytics */; };
 		005A26552BA139E300C659B2 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 005A26542BA139E300C659B2 /* FirebaseAnalyticsOnDeviceConversion */; };
 		005A26572BA139E300C659B2 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 005A26562BA139E300C659B2 /* FirebaseAnalyticsSwift */; };
@@ -117,6 +119,8 @@
 		0043A44E2BAB9E0400928971 /* ShippingAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingAddressView.swift; sourceTree = "<group>"; };
 		0043A4502BABA34800928971 /* ShippingAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShippingAddressViewModel.swift; sourceTree = "<group>"; };
 		0043A4522BABA3B300928971 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
+		0043A4552BAD245300928971 /* CheckOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutView.swift; sourceTree = "<group>"; };
+		0043A4572BAD324D00928971 /* AddressesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesManager.swift; sourceTree = "<group>"; };
 		0063C1922B92FBF00099A2A5 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		0063C1952B92FCFD0099A2A5 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		0063C1982B9306240099A2A5 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
@@ -245,6 +249,14 @@
 			path = ShippingAddressScreen;
 			sourceTree = "<group>";
 		};
+		0043A4542BAD229300928971 /* CheckOutScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0043A4552BAD245300928971 /* CheckOutView.swift */,
+			);
+			path = CheckOutScreen;
+			sourceTree = "<group>";
+		};
 		0063C1912B92FBDA0099A2A5 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				0063C1982B9306240099A2A5 /* CartView.swift */,
+				0043A4542BAD229300928971 /* CheckOutScreen */,
 			);
 			path = CartScreen;
 			sourceTree = "<group>";
@@ -315,6 +328,7 @@
 				0043A4482BAA3C1700928971 /* CartViewModel.swift */,
 				0043A44A2BAA497F00928971 /* CartManager.swift */,
 				0043A4502BABA34800928971 /* ShippingAddressViewModel.swift */,
+				0043A4572BAD324D00928971 /* AddressesManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -574,12 +588,14 @@
 				006472562B9086D80064C5D9 /* HomeView.swift in Sources */,
 				0043A43B2BA244F200928971 /* ReviewModel.swift in Sources */,
 				0043A43F2BA246BA00928971 /* ReviewsViewModel.swift in Sources */,
+				0043A4562BAD245300928971 /* CheckOutView.swift in Sources */,
 				0063C19C2B93063F0099A2A5 /* ProfileView.swift in Sources */,
 				0063C1992B9306240099A2A5 /* CartView.swift in Sources */,
 				0043A4422BA2474500928971 /* ReviewView.swift in Sources */,
 				0063C1A62B95F77A0099A2A5 /* HomeViewModel.swift in Sources */,
 				00E2D52F2B86E73A00BE9ABF /* WelcomeView.swift in Sources */,
 				00B78D3D2B9746D700EB82BC /* ImageLoadingViewModel.swift in Sources */,
+				0043A4582BAD324D00928971 /* AddressesManager.swift in Sources */,
 				006670B92B8DBA21009E78BE /* SignUpView.swift in Sources */,
 				00E2D5572B8AC50800BE9ABF /* LogInView.swift in Sources */,
 				00E2D52D2B86E73A00BE9ABF /* FurnitureAppApp.swift in Sources */,

@@ -17,6 +17,6 @@ class CartViewModel : ObservableObject {
             cost += Int(product.price?.regularPrice?.minPrice ?? 0) * multiplier
         }
         
-        return "$\(cost)"
+        return "\(cost)"
     }
 }

@@ -16,6 +16,7 @@ struct FurnitureAppApp: App {
             HolderView()
                 .environmentObject(AuthViewModel())
                 .environmentObject(CartManager())
+                .environmentObject(AddressesManager())
         }
         .modelContainer(for: Product.self)
     }
