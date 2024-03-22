@@ -63,6 +63,7 @@
 		006670F22B8DDBF3009E78BE /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 006670F12B8DDBF3009E78BE /* FirebaseStorageCombine-Community */; };
 		006670F52B8EC778009E78BE /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006670F42B8EC778009E78BE /* Validation.swift */; };
 		006670F72B8ED3B7009E78BE /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006670F62B8ED3B7009E78BE /* UIApplication+Extension.swift */; };
+		008D67EB2BAE361300DFDE1F /* OrderSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008D67EA2BAE361300DFDE1F /* OrderSuccessView.swift */; };
 		00A009BA2B92F91A0063351D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 00A009B92B92F91A0063351D /* FirebaseAnalytics */; };
 		00A009BC2B92F91A0063351D /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 00A009BB2B92F91A0063351D /* FirebaseAnalyticsOnDeviceConversion */; };
 		00A009BE2B92F91A0063351D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00A009BD2B92F91A0063351D /* FirebaseAnalyticsSwift */; };
@@ -134,6 +135,7 @@
 		006670BA2B8DDBA4009E78BE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		006670F42B8EC778009E78BE /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		006670F62B8ED3B7009E78BE /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		008D67EA2BAE361300DFDE1F /* OrderSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSuccessView.swift; sourceTree = "<group>"; };
 		00B312B92B99F06100BC2943 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		00B312BB2B99F07600BC2943 /* ProductDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailModel.swift; sourceTree = "<group>"; };
 		00B312BD2B99F2F100BC2943 /* ApiDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiDetails.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				00B312B82B99F04A00BC2943 /* ProductDetailScreen */,
 				0043A4402BA2473700928971 /* ReviewsScreen */,
 				0043A44C2BAB9DC600928971 /* ProfileScreens */,
+				008D67E92BAE35EF00DFDE1F /* OrderSuccssState */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -357,6 +360,14 @@
 				006670F42B8EC778009E78BE /* Validation.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		008D67E92BAE35EF00DFDE1F /* OrderSuccssState */ = {
+			isa = PBXGroup;
+			children = (
+				008D67EA2BAE361300DFDE1F /* OrderSuccessView.swift */,
+			);
+			path = OrderSuccssState;
 			sourceTree = "<group>";
 		};
 		00B312B82B99F04A00BC2943 /* ProductDetailScreen */ = {
@@ -593,6 +604,7 @@
 				0063C1992B9306240099A2A5 /* CartView.swift in Sources */,
 				0043A4422BA2474500928971 /* ReviewView.swift in Sources */,
 				0063C1A62B95F77A0099A2A5 /* HomeViewModel.swift in Sources */,
+				008D67EB2BAE361300DFDE1F /* OrderSuccessView.swift in Sources */,
 				00E2D52F2B86E73A00BE9ABF /* WelcomeView.swift in Sources */,
 				00B78D3D2B9746D700EB82BC /* ImageLoadingViewModel.swift in Sources */,
 				0043A4582BAD324D00928971 /* AddressesManager.swift in Sources */,

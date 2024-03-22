@@ -248,7 +248,7 @@ struct InvoiceView:View {
             .shadow(radius: 10)
             .padding(.horizontal)
             
-            Button{}label: {
+            NavigationLink(destination: OrderSuccessView()) {
                 Text("SUBMIT ORDER")
                     .font(.system(size: 20,weight: .semibold))
                     .padding()
