@@ -22,7 +22,7 @@ Key Features:
 
 • SwiftUi
 
-• Model view view controller architecture
+• Model view view model architecture
 
 • Lazy Image swift package for handling the images
 
