@@ -31,8 +31,7 @@ struct OrderSuccessView: View {
                 }
                                 
                 
-                Button{
-                }label: {
+                NavigationLink(destination: HomeView(), label: {
                     Text("BACK TO HOME")
                         .font(.system(size: 20,weight: .semibold))
                         .padding(.vertical,20)
@@ -44,7 +43,8 @@ struct OrderSuccessView: View {
                                 .stroke(.main, lineWidth:1)
                         }
                         .padding(.horizontal)
-                }
+
+                })
                 .padding(.top)
 
             }

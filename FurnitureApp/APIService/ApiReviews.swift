@@ -15,7 +15,7 @@ class ApiReviews{
     private init(){}
 
     
-    private let apiKey = "14fd0f7eefmsh5a8d05ff1d59cddp1b37fcjsnaf140f2fa871"
+    private let apiKey = "0eba5408f5mshb9937614eee1533p143095jsna5a04c8b6496"
     private let urlString = "https://kohls.p.rapidapi.com/reviews/list"
     
     func fetchReviews(id : String,offset:String = "0") async throws -> ReviewData?{

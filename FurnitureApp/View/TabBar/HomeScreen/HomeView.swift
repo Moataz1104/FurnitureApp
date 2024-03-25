@@ -32,6 +32,7 @@ struct HomeView: View {
             .onChange(of: viewModel.products.count) { oldValue, newValue in
                 print("Products Count is \(newValue)")
             }
+            .toolbar(.hidden)
         }
     }
 }

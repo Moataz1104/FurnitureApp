@@ -122,18 +122,8 @@ struct InnerLogInView : View{
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
                         .padding(.top,20)
-                    TextField("", text: $email) { isEditing in
-                        if !isEditing{
-                            if !isEmailValid{
-                                showValEmailAlert = true
-                            }
-                        }
-                    }.onChange(of: email, { _, newValue in
-                        isEmailValid = Validation.isValidEmail(newValue)
-
-                    })
-                    .textContentType(.emailAddress)
-                    .alert("Invalid Email", isPresented: $showValEmailAlert){}
+                    TextField("", text: $email)
+                        .textContentType(.emailAddress)
                     
                     Rectangle()
                         .frame(maxWidth:.infinity)
@@ -155,19 +145,6 @@ struct InnerLogInView : View{
                                 TextField("", text: $passWord)
                                     .focused($focusedField,equals: .password)
                             }
-                        }
-                        .onChange(of: passWord, { _, newValue in
-                            isPasswordValid = Validation.isPasswordValid(newValue)
-                        })
-                        .onChange(of: focusedField, { _, newValue in
-                            if focusedField == nil {
-                                if isPasswordValid == false {
-                                    showValPwAlert = true
-                                }
-                            }
-                        })
-                        .alert("Invalid Password", isPresented: $showValPwAlert, actions: {}) {
-                            Text("Password must meet the following criteria:\n- At least 8 characters\n- At least 1 uppercase letter\n- At least 1 lowercase letter\n- At least 1 special character")
                         }
                         Image(systemName: isSecure ? "eye.slash" : "eye")
                             .tint(.gray)
