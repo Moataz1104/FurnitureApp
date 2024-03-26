@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct CartView: View {
+    @EnvironmentObject var navigationStateManager: NavigationStateManager<AppNavigationPath>
+
     @EnvironmentObject private var cartManager : CartManager
     @StateObject var viewModel = CartViewModel()
     var body: some View {
-        NavigationStack{
             VStack{
                 if viewModel.cartProducts.isEmpty{
                     Image(.noCart)
@@ -31,7 +32,7 @@ struct CartView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         
                         Spacer()
-                        BillView(viewModel: viewModel)
+                        BillView(navigationStateManager: navigationStateManager, viewModel: viewModel)
                             .padding(.vertical)
                         
                     }
@@ -45,7 +46,8 @@ struct CartView: View {
                 cartManager.cartProducts = viewModel.cartProducts
             }
             
-        }
+        
+
     }
     
 }
@@ -155,6 +157,7 @@ struct CartProductView: View {
 }
 
 struct BillView:View {
+    var navigationStateManager: NavigationStateManager<AppNavigationPath>
     @StateObject var viewModel : CartViewModel
     var body: some View {
         VStack(spacing:20){
@@ -169,7 +172,22 @@ struct BillView:View {
             .padding(.horizontal)
             
             
-            NavigationLink(destination: CheckOutView(totalCost: viewModel.totalCost)) {
+//            NavigationLink(destination: CheckOutView(totalCost: viewModel.totalCost)) {
+//                Text("Check Out")
+//                    .font(.system(size: 20,weight: .semibold))
+//                    .padding()
+//                    .foregroundStyle(.white)
+//                    .frame(maxWidth: .infinity)
+//                    .background(.main)
+//                    .clipShape(.rect(cornerRadius: 10))
+//                    .padding(.horizontal)
+//
+//            }
+            
+            Button{
+                navigationStateManager.pushToStage(stage: .checkOut(viewModel.totalCost))
+                print("navigationStateManager tapped")
+            }label: {
                 Text("Check Out")
                     .font(.system(size: 20,weight: .semibold))
                     .padding()
@@ -183,3 +201,6 @@ struct BillView:View {
         }
     }
 }
+
+
+

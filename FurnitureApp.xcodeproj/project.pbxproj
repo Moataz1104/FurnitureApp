@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000B69522BB231420060A8DA /* NavigationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B69512BB231420060A8DA /* NavigationStateManager.swift */; };
 		0043A43B2BA244F200928971 /* ReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043A43A2BA244F200928971 /* ReviewModel.swift */; };
 		0043A43D2BA2452100928971 /* ApiReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043A43C2BA2452100928971 /* ApiReviews.swift */; };
 		0043A43F2BA246BA00928971 /* ReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0043A43E2BA246BA00928971 /* ReviewsViewModel.swift */; };
@@ -111,6 +112,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000B69512BB231420060A8DA /* NavigationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStateManager.swift; sourceTree = "<group>"; };
 		0043A43A2BA244F200928971 /* ReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModel.swift; sourceTree = "<group>"; };
 		0043A43C2BA2452100928971 /* ApiReviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiReviews.swift; sourceTree = "<group>"; };
 		0043A43E2BA246BA00928971 /* ReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewModel.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				006670F42B8EC778009E78BE /* Validation.swift */,
+				000B69512BB231420060A8DA /* NavigationStateManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				006472562B9086D80064C5D9 /* HomeView.swift in Sources */,
 				0043A43B2BA244F200928971 /* ReviewModel.swift in Sources */,
 				0043A43F2BA246BA00928971 /* ReviewsViewModel.swift in Sources */,
+				000B69522BB231420060A8DA /* NavigationStateManager.swift in Sources */,
 				0043A4562BAD245300928971 /* CheckOutView.swift in Sources */,
 				0063C19C2B93063F0099A2A5 /* ProfileView.swift in Sources */,
 				0063C1992B9306240099A2A5 /* CartView.swift in Sources */,

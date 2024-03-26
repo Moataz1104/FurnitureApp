@@ -8,30 +8,29 @@
 import SwiftUI
 
 struct CheckOutView: View {
+    @EnvironmentObject var navigationStateManager:NavigationStateManager<AppNavigationPath>
     @EnvironmentObject var addressManager : AddressesManager
     @State var totalCost:String
     var body: some View {
-        NavigationStack{
-            ScrollView(showsIndicators:false){
-                CheckOutAddressView()
-                    .padding(.vertical)
-                
-                PaymentView()
-                    .padding(.vertical)
-                
-                
-                
-                DeliveryMethodView()
-                    .padding(.vertical)
-                
-                InvoiceView(totalCost: totalCost)
-                    .padding(.bottom)
-            }
-            .navigationTitle("Check Out")
-            .navigationBarTitleDisplayMode(.inline)
-
+        ScrollView(showsIndicators:false){
+            CheckOutAddressView()
+                .padding(.vertical)
             
+            PaymentView()
+                .padding(.vertical)
+            
+            
+            
+            DeliveryMethodView()
+                .padding(.vertical)
+            
+            InvoiceView(navigationStateManager: navigationStateManager, totalCost: totalCost)
+                .padding(.bottom)
         }
+        .navigationTitle("Check Out")
+        .navigationBarTitleDisplayMode(.inline)
+        
+        
     }
 }
 
@@ -89,7 +88,6 @@ struct AddressesSheet:View {
     @EnvironmentObject var addressManager : AddressesManager
     @Environment(\.dismiss) var dismiss
     var body: some View {
-        NavigationStack{
             ScrollView{
                 ForEach(addressManager.addresses){address in
                     AddressSampleView(address: address)
@@ -102,7 +100,6 @@ struct AddressesSheet:View {
             }
             .navigationTitle("Choose Address")
             .navigationBarTitleDisplayMode(.inline)
-        }
     }
 }
 
@@ -202,12 +199,11 @@ struct DeliveryMethodView:View {
     }
 }
 
-#Preview {
-    InvoiceView(totalCost: "95")
-}
 
 
 struct InvoiceView:View {
+    @EnvironmentObject var cartManager : CartManager
+    var navigationStateManager:NavigationStateManager<AppNavigationPath>
     @State var totalCost:String
     var body: some View {
         VStack(spacing:20){
@@ -228,7 +224,7 @@ struct InvoiceView:View {
                     Spacer()
                     Text("$ 50")
                         .font(.system(size: 17,weight: .semibold))
-
+                    
                 }
                 
                 HStack{
@@ -238,7 +234,7 @@ struct InvoiceView:View {
                     Spacer()
                     Text("$ \(Int(totalCost)! + 50)")
                         .font(.system(size: 18,weight: .bold))
-
+                    
                 }
                 .padding(.bottom)
                 
@@ -248,7 +244,23 @@ struct InvoiceView:View {
             .shadow(radius: 10)
             .padding(.horizontal)
             
-            NavigationLink(destination: OrderSuccessView()) {
+            //            NavigationLink(destination: OrderSuccessView()) {
+            //                Text("SUBMIT ORDER")
+            //                    .font(.system(size: 20,weight: .semibold))
+            //                    .padding()
+            //                    .foregroundStyle(.white)
+            //                    .frame(maxWidth: .infinity)
+            //                    .background(.main)
+            //                    .clipShape(.rect(cornerRadius: 10))
+            //                    .padding(.horizontal)
+            //
+            //            }
+            
+            
+            Button{
+                navigationStateManager.pushToStage(stage: .successView)
+                cartManager.cartProducts.removeAll()
+            }label: {
                 Text("SUBMIT ORDER")
                     .font(.system(size: 20,weight: .semibold))
                     .padding()
@@ -257,6 +269,7 @@ struct InvoiceView:View {
                     .background(.main)
                     .clipShape(.rect(cornerRadius: 10))
                     .padding(.horizontal)
+                
 
             }
         }

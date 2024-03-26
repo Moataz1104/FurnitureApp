@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @StateObject var navigationStateManager = NavigationStateManager(selectionPath: [AppNavigationPath]())
     var body: some View {
+        
         TabView{
             HomeView()
                 .tabItem { Label("", systemImage: "house") }
@@ -17,20 +19,26 @@ struct TabBarView: View {
             FavoriteView()
                 .tabItem { Label("", systemImage:"bookmark" ) }
             
-            
-            CartView()
-                .tabItem{Label("", systemImage: "cart.fill")}
-            
+            NavigationStack(path: $navigationStateManager.selectionPath){
+                CartView()
+                    .navigationDestination(for: AppNavigationPath.self){path in
+                        switch path{
+                        case .successView:
+                            OrderSuccessView()
+                            
+                        case .checkOut(let totalCost):
+                            CheckOutView(totalCost: totalCost)
+                            
+                        }
+                    }
+            }
+            .tabItem{Label("", systemImage: "cart.fill")}
+            .environmentObject(navigationStateManager)
+
             ProfileView()
                 .tabItem { Label("", systemImage: "person") }
-
-        }.onAppear{
-            UITabBar.appearance().backgroundColor = .white
         }
-        .tint(.black)
-    }
-}
+        .tint(.main)
 
-#Preview {
-    TabBarView()
+    }
 }
