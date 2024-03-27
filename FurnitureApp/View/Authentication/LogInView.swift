@@ -97,7 +97,7 @@ struct InnerLogInView : View{
     let width : Double
     let height:Double
     
-    @EnvironmentObject private var viewModel : AuthViewModel
+    @EnvironmentObject private var viewModel : AuthManager
     
     @Binding var email:String
     @Binding var passWord:String

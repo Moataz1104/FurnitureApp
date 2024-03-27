@@ -14,7 +14,7 @@ struct FurnitureAppApp: App {
     var body: some Scene {
         WindowGroup {
             HolderView()
-                .environmentObject(AuthViewModel())
+                .environmentObject(AuthManager())
                 .environmentObject(CartManager())
                 .environmentObject(AddressesManager())
         }
@@ -34,7 +34,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 
 struct HolderView: View {
-    @EnvironmentObject private var authModel:AuthViewModel
+    @EnvironmentObject private var authModel:AuthManager
     var body: some View {
         Group{
             if authModel.user == nil{

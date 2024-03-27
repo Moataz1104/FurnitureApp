@@ -82,9 +82,6 @@ struct SignUpView: View {
     }
 }
 
-#Preview {
-    SignUpView()
-}
 
 
 struct InnerSignUpView : View {
@@ -95,7 +92,7 @@ struct InnerSignUpView : View {
     let width : Double
     let height:Double
     
-    @EnvironmentObject private var viewModel : AuthViewModel
+    @EnvironmentObject private var viewModel : AuthManager
 
     @Binding var name:String
     @Binding var email:String
@@ -127,7 +124,7 @@ struct InnerSignUpView : View {
                     Text("Name")
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
-                    TextField("", text: $name){isEditing in
+                    TextField("", text: $viewModel.userName){isEditing in
                         if !isEditing{
                             isNameValid = !name.isEmpty
                         }
