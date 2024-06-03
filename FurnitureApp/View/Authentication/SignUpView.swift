@@ -124,9 +124,10 @@ struct InnerSignUpView : View {
                     Text("Name")
                         .font(.system(size: 14))
                         .foregroundStyle(Color(hex: 0x909090))
-                    TextField("", text: $viewModel.userName){isEditing in
+                    TextField("", text: $name){isEditing in
                         if !isEditing{
                             isNameValid = !name.isEmpty
+
                         }
                     }
                     Rectangle()
@@ -227,7 +228,7 @@ struct InnerSignUpView : View {
             Spacer()
             VStack(spacing:30){
                 Button{
-                    viewModel.signUp(emailAddress: email, password: confirmPassWord)
+                    viewModel.signUp(userName:name,emailAddress: email, password: confirmPassWord)
                 }label: {
                     RoundedRectangle(cornerRadius: 10)
                         .frame(width: 290,height: 50)

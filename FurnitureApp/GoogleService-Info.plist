@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyBD5CczedTVCQim9sjnZi2S6gHsDBCQXJg</string>
+	<string>AIzaSyAYao9vKo0atXO-4pq-LDzIr70ZQ5BZuTw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>147015480792</string>
+	<string>819484688563</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.moataz.FurnitureApp</string>
 	<key>PROJECT_ID</key>
-	<string>furnitureapp-ea648</string>
+	<string>furnitureapp-25bf5</string>
 	<key>STORAGE_BUCKET</key>
-	<string>furnitureapp-ea648.appspot.com</string>
+	<string>furnitureapp-25bf5.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:147015480792:ios:8b5aa0911d7291a0a2eead</string>
+	<string>1:819484688563:ios:2cc8d2c4f6245f16f430c6</string>
 </dict>
 </plist>

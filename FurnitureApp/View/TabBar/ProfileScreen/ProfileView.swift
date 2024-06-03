@@ -161,7 +161,7 @@ struct ProfileDetailsView: View {
         }
         .padding()
         .onAppear{
-            viewModel.getUsername(forUserID: viewModel.user?.uid ?? "") { userName in
+            viewModel.getUsername(forUserID: viewModel.user!.uid) { userName in
                 self.userName = userName
             }
         }

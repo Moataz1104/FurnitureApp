@@ -48,7 +48,7 @@ final class AuthManager:ObservableObject {
         }
     }
     
-    func signUp(emailAddress:String,password:String){
+    func signUp(userName:String,emailAddress:String,password:String){
         isLoading = true
         Auth.auth().createUser(withEmail: emailAddress, password: password){[weak self] result , error in
             guard let self = self else {return}
