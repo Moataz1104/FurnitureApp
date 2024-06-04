@@ -44,67 +44,7 @@ struct ProfileView: View {
     }
 }
 
-#Preview {
-    tst()
-}
 
-
-struct tst:View {
-    @State private var avatarItem: PhotosPickerItem?
-    @State private var avatarImage: Image?
-
-    var body: some View {
-        
-        
-        HStack(spacing:20){
-            Group{
-                if let avatarImage = avatarImage {
-                    avatarImage
-                        .resizable()
-                        .scaledToFill()
-                        .clipShape(Circle())
-                        .frame(width: 100,height: 100)
-                    
-                }else{
-                    Image(systemName: "photo.badge.plus.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100,height: 100)
-                }
-            }
-            .overlay{
-                PhotosPicker(selection: $avatarItem,matching: .images) {
-                    Rectangle()
-                        .frame(width: 100,height: 100)
-                        .foregroundStyle(.clear)
-                }
-                .onChange(of: avatarItem) {
-                    Task {
-                        if let loaded = try? await avatarItem?.loadTransferable(type: Image.self) {
-                            avatarImage = loaded
-                        } else {
-                            print("Failed")
-                        }
-                    }
-                }
-            }
-            
-            VStack(alignment:.leading){
-                Text("userName ?? ")
-                    .font(.system(size: 20,weight: .bold))
-                    .foregroundStyle(.main)
-                
-                Text("viewModel.user?.email ?? ")
-                    .font(.system(size: 18,weight: .regular))
-                    .tint(.subMain)
-                
-            }
-            Spacer()
-        }
-        .padding()
-
-    }
-}
 
 
 
@@ -148,7 +88,7 @@ struct ProfileDetailsView: View {
                 }
             }
             VStack(alignment:.leading){
-                Text(userName ?? "")
+                Text(userName ?? "Moataz Mohamed")
                     .font(.system(size: 20,weight: .bold))
                     .foregroundStyle(.main)
                 

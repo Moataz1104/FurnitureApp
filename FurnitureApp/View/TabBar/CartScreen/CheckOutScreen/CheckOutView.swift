@@ -218,7 +218,7 @@ struct InvoiceView:View {
                 }
                 .padding(.top)
                 HStack{
-                    Text("Order:")
+                    Text("Delivery:")
                         .font(.system(size: 18,weight: .regular))
                         .foregroundStyle(Color(hex: 0x808080))
                     Spacer()
@@ -228,7 +228,7 @@ struct InvoiceView:View {
                 }
                 
                 HStack{
-                    Text("Order:")
+                    Text("Total:")
                         .font(.system(size: 18,weight: .regular))
                         .foregroundStyle(Color(hex: 0x808080))
                     Spacer()
@@ -243,19 +243,6 @@ struct InvoiceView:View {
             .background(.white)
             .shadow(radius: 10)
             .padding(.horizontal)
-            
-            //            NavigationLink(destination: OrderSuccessView()) {
-            //                Text("SUBMIT ORDER")
-            //                    .font(.system(size: 20,weight: .semibold))
-            //                    .padding()
-            //                    .foregroundStyle(.white)
-            //                    .frame(maxWidth: .infinity)
-            //                    .background(.main)
-            //                    .clipShape(.rect(cornerRadius: 10))
-            //                    .padding(.horizontal)
-            //
-            //            }
-            
             
             Button{
                 navigationStateManager.pushToStage(stage: .successView)

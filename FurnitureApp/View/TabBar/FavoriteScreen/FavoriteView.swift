@@ -21,7 +21,7 @@ struct FavoriteView: View {
             }else{
                 ScrollView {
                     ForEach(products){product in
-                        NavigationLink(destination: ProductDetailView(product: product)) {
+                        NavigationLink(destination: ProductDetailView(isFav: true, product: product)) {
                             
                             FavoriteItemView(product: product)
                         }

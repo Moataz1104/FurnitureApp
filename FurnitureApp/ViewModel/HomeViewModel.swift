@@ -11,7 +11,7 @@ import Combine
 class HomeViewModel : ObservableObject{
     @Published var products = [ProductModel]()
     @Published var totalResults = ""
-    @Published var fetchByKeyWord = "chairs"
+    @Published var fetchByKeyWord = "Bed"
     @Published var isUsingSearch = false
     @Published var isLoading = false
     @Published var sortingId = "6"

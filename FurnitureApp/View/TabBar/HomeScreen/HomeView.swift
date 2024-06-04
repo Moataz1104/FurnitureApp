@@ -120,7 +120,7 @@ struct HorizontalScrollView: View {
     @StateObject var viewModel:HomeViewModel
     @State private var selectedIndex = 0
     
-    private let catigories = ["chair.fill" , "table.furniture.fill" , "sofa.fill" , "lamp.desk.fill","bed.double.fill"]
+    private let catigories = ["bed.double.fill","table.furniture.fill","chair.fill" , "sofa.fill" , "lamp.desk.fill"]
     
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false) {
@@ -221,7 +221,7 @@ struct LoadingImageView: View {
             if starting {
                 ProgressView()
             }
-        }.navigationDestination(isPresented: $isDest, destination: {ProductDetailView(productDetail: product)})
+        }.navigationDestination(isPresented: $isDest, destination: {ProductDetailView(isFav: false, productDetail: product)})
     }
     
 }

@@ -10,6 +10,8 @@ import NukeUI
 struct ProductDetailView: View {
     @StateObject private var viewModel = ProductDetailViewModel()
     @EnvironmentObject var cartManager : CartManager
+    @State private var showAlert = false
+    @State var isFav : Bool
     
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
@@ -34,7 +36,7 @@ struct ProductDetailView: View {
                 }
                 .toolbar{
                     ToolbarItem(placement: .confirmationAction) {
-                        FooterButtonsView(viewModel: viewModel)
+                        BarButtonView( viewModel: viewModel, isFav: isFav)
                     }
                 }
                 .onAppear{
@@ -47,30 +49,31 @@ struct ProductDetailView: View {
                     }
                     
                 }
-                Rectangle()
-                    .frame(height: 60)
-                    .foregroundStyle(.clear)
-                
+                if let product = viewModel.productDetails{
+                    Button{
+                        showAlert = true
+                        cartManager.addToCart(product: product)
+                    }label: {
+                        Text("Add to cart +")
+                            .font(.system(size: 18,weight: .semibold))
+                            .padding()
+                            .foregroundStyle(.white)
+                            .frame(width: 250 )
+                            .background(.main)
+                        
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.bottom)
+                    .alert("Added successfully ✅", isPresented: $showAlert, actions: {})
+
+                    
+                }
+
             }
             
-            Button{
-                if let product = viewModel.productDetails{
-                    cartManager.addToCart(product: product)
-                }
-            }label: {
-                Text("Add to cart +")
-                    .font(.system(size: 18,weight: .semibold))
-                    .padding()
-                    .foregroundStyle(.white)
-                    .frame(width: 250 )
-                    .background(.main)
-                    
-            }
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .padding(.bottom)
-
+            
         }
-
+        
     }
 }
 
@@ -205,7 +208,7 @@ struct ProductMetaDataView : View {
                     }
                         .onTapGesture {
                             UIApplication.shared.open(URL(string: url)!)
-                            print("url Tapped")
+                            
                         }
                 }
                 Divider()
@@ -225,16 +228,16 @@ struct ProductMetaDataView : View {
     }
 }
 
-struct FooterButtonsView: View {
+struct BarButtonView: View {
     @Environment(\.modelContext) var context
     @StateObject var viewModel : ProductDetailViewModel
-    @State private var isFav = false
+    @State var isFav:Bool
     var body: some View {
         
         Button{
             if let productDetails = viewModel.productDetails{
                 context.insert(productDetails)
-                isFav = true
+                isFav.toggle()
             }
         }label: {
             Image(systemName: "bookmark.fill")
